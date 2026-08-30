@@ -1,45 +1,67 @@
-/* ===== RESET & BASE ===== */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ================================================================
+   RS Enterprises - style.css
+   This file controls ALL the colours, fonts and layout of the site.
+
+   Colour scheme (think: trustworthy Indian security company):
+     - Navy blue  : the main brand colour (header, footer, buttons)
+     - White      : clean background for easy reading
+     - Gold/amber : the accent colour (small touches, buttons, lines)
+
+   How to use this file for small edits (no coding needed):
+     - To change the main colour: edit "--navy" below.
+     - To change the accent colour: edit "--gold" below.
+     - To change the font size of a section: find that section's name
+       below (for example "Hero") and adjust the font-size value.
+
+   The whole site is one page, and it is built to look good on:
+     - a big computer screen (widescreen monitors)
+     - a small mobile phone (the most common way people will visit)
+   ================================================================ */
+
+/* ---------- 1. Design "variables" (the main palette) ---------- */
+:root {
+  --navy: #0B1F3A;      /* main navy blue */
+  --navy-2: #123055;    /* lighter navy (hover colour) */
+  --navy-deep: #081527; /* darkest navy (footer) */
+  --gold: #E9A319;      /* main gold / amber accent */
+  --gold-dark: #B97E0B; /* darker gold (hover colour) */
+  --gold-soft: #FBF0DA; /* very light cream used behind accents */
+  --white: #FFFFFF;
+  --cloud: #F3F6FA;     /* very light grey-blue used on alternate sections */
+  --line: #E1E8F0;      /* light border colour between cards */
+  --ink: #22374E;       /* main readable paragraph colour */
+  --muted: #52667B;     /* softer grey for captions */
+  --radius: 16px;       /* how round the corners are (16px looks soft and friendly) */
+  --shadow: 0 10px 30px rgba(11, 31, 58, 0.10);
+  --font: 'Fredoka', 'Segoe UI', Arial, sans-serif; /* the one font used everywhere */
 }
 
-:root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: #1a1a25;
-  --text-primary: #f0f0f5;
-  --text-secondary: #a0a0b0;
-  --accent: #3b82f6;
-  --accent-glow: rgba(59, 130, 246, 0.4);
-  --accent-gold: #d4a843;
-  --glass-bg: rgba(18, 18, 26, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --radius: 14px;
-  --radius-lg: 20px;
-  --radius-full: 50px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+/* ---------- 2. Basic reset & defaults ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+  scroll-behavior: smooth; /* fallback smooth jump if Lenis is not loaded */
+}
+
+/* Recommended Lenis styles (needed for smooth scrolling to work well) */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {
   font-family: var(--font);
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  font-size: 1.06rem;
   line-height: 1.6;
-  overflow-x: hidden;
+  color: var(--ink);
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }
 
 img {
@@ -47,765 +69,763 @@ img {
   display: block;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Keeps the content in a neat narrow strip in the middle of the screen */
 .container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 24px;
+  width: min(1120px, 92%);
+  margin-inline: auto;
 }
 
-/* ===== NAVBAR ===== */
-.navbar {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 48px);
-  max-width: 900px;
-  z-index: 1000;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-full);
-  padding: 12px 28px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: var(--transition);
+/* Extra space at the top of each section so the sticky menu never covers it */
+section[id] {
+  scroll-margin-top: 90px;
 }
 
-.navbar.scrolled {
-  background: rgba(10, 10, 15, 0.92);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.nav-container {
-  display: flex;
+/* ---------- 3. Buttons (all rounded, clean, easy to tap on a phone) ---------- */
+.btn {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 1.1rem;
+  justify-content: center;
+  gap: 0.45rem;
+  border: none;
+  border-radius: 999px; /* full pill shape */
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
   white-space: nowrap;
 }
-
-.logo-icon {
-  font-size: 1.4rem;
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
 }
 
-.nav-links {
+/* Gold button = the main "do this" action on the page */
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+.btn-gold:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+}
+
+/* Navy button = secondary action */
+.btn-navy {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-navy:hover {
+  background: var(--navy-2);
+}
+
+/* White outline button = used on the dark hero picture */
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  color: var(--white);
+}
+.btn-outline:hover {
+  background: var(--white);
+  color: var(--navy);
+}
+
+.btn-sm { padding: 0.45rem 1.05rem; font-size: 0.9rem; }
+.btn-lg { padding: 0.95rem 1.9rem;  font-size: 1.12rem; }
+
+/* ---------- 4. Sticky top menu bar ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navy);
+  color: var(--white);
+  border-bottom: 3px solid var(--gold); /* slim gold line under the menu */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.header-inner {
   display: flex;
-  list-style: none;
   align-items: center;
-  gap: 8px;
+  gap: 1rem;
+  min-height: 76px;
 }
 
-.nav-link {
-  padding: 8px 18px;
-  border-radius: var(--radius-full);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: var(--transition);
-  position: relative;
+/* Logo block on the left (shield icon + company name) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-right: auto;
 }
-
-.nav-link:hover,
-.nav-link.active {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.06);
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  flex: none;
 }
-
-.nav-cta {
-  background: var(--accent) !important;
-  color: #fff !important;
+.brand-name {
+  display: block;
+  font-size: 1.35rem;
   font-weight: 600;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+  color: var(--white);
+}
+.brand-tag {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.4px;
+  margin-top: 0.15rem;
 }
 
-.nav-cta:hover {
-  background: #2563eb !important;
-  box-shadow: 0 0 20px var(--accent-glow);
+/* The middle menu links */
+.site-nav {
+  display: flex;
+  gap: 0.35rem;
+}
+.site-nav a {
+  color: #DCE6F2;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.98rem;
+  transition: background 0.15s, color 0.15s;
+}
+.site-nav a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* Mobile toggle */
+/* Right side of the menu: language button + Apply Now button */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 0.5rem;
+}
+
+/* The EN / हिंदी language switch button */
+.lang-toggle {
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  color: var(--white);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Hamburger button - only visible on small phone screens;
+   it opens and closes the menu on mobile */
 .nav-toggle {
   display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  color: var(--white);
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  padding: 4px;
+}
+.nav-toggle svg {
+  width: 24px;
+  height: 24px;
 }
 
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--text-primary);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-
-.nav-toggle.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.nav-toggle.open span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* ===== HERO ===== */
+/* ---------- 5. Hero (big welcome section at the top) ---------- */
 .hero {
+  background:
+    radial-gradient(900px 480px at 85% -10%, rgba(233, 163, 25, 0.22), transparent 60%),
+    linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 45%, var(--navy-2) 100%);
+  color: var(--white);
+  padding: 5.5rem 0 6rem;
+  text-align: center;
+}
+.hero-chip {
+  display: inline-block;
+  background: rgba(233, 163, 25, 0.16);
+  border: 1px solid rgba(233, 163, 25, 0.4);
+  color: var(--gold);
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.hero h1 {
+  font-size: clamp(2.1rem, 5vw, 3.3rem);
+  font-weight: 600;
+  line-height: 1.15;
+  max-width: 22ch;
+  margin: 1.3rem auto 1rem;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2.4vw, 1.22rem);
+  color: #D8E3F2;
+  max-width: 62ch;
+  margin-inline: auto;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.4rem;
+  flex-wrap: wrap;
+}
+.hero-note {
+  margin-top: 1.7rem;
+  font-size: 0.92rem;
+  color: #AFC2DB;
+}
+
+/* ---------- 6. General section blocks ---------- */
+.section {
+  padding: 4.5rem 0;
+}
+.section.alt {
+  background: var(--cloud);
+}
+
+.section-head {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto 3rem;
+}
+.section-head h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--navy);
+  font-weight: 600;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1rem;
+}
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 64px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--gold); /* the gold underline under each section title */
+}
+.section-head p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ---------- 7. About Us ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.2rem;
+  align-items: start;
+}
+.about-text p {
+  margin-bottom: 1.1rem;
+  font-size: 1.08rem;
+}
+
+/* The small tick list beside the About text */
+.check-list {
+  margin-top: 1.5rem;
+}
+.check-list li {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+.check-list svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+  margin-top: 0.2rem;
+}
+
+/* The small white "promise" box next to the About text */
+.about-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.7rem 1.6rem;
+  box-shadow: var(--shadow);
+}
+.about-card h3 {
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+  font-size: 1.15rem;
+}
+.about-card p {
+  color: var(--muted);
+}
+
+/* The row of number "trust stats" (500+ guards, 50+ clients...) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 2.8rem;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.stat-icon {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 0.8rem;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stat-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.stat-num {
+  display: block;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1;
+}
+.stat-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.45rem;
+}
+
+/* ---------- 8. Service cards (Guard, Gunman, Housekeeping, Supervisor) ---------- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.4rem;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.9rem 1.6rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(11, 31, 58, 0.14);
+}
+.service-card .card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--navy);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+.card-icon svg {
+  width: 30px;
+  height: 30px;
+}
+.card h3 {
+  font-size: 1.3rem;
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.25;
+}
+/* The Hindi job title shown under the English title (always visible) */
+.role-hi {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--gold-dark);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+.card p {
+  color: var(--muted);
+  font-size: 0.99rem;
+  margin-top: 0.6rem;
+}
+
+/* ---------- 9. Job vacancy cards ---------- */
+.vacancy-card {
+  display: flex;
+  gap: 1.6rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vacancy-card h3 {
+  font-size: 1.25rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+.vacancy-location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.9rem;
+}
+.vacancy-location svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold-dark);
+  flex: none;
+}
+.vacancy-requirements {
+  margin-bottom: 0.5rem;
+}
+.vacancy-requirements li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.98rem;
+}
+/* the little gold dot before each requirement */
+.vacancy-requirements li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.vacancy-card .btn {
+  flex: none;
+}
+
+/* ---------- 10. Apply Now ---------- */
+.apply-section .section-head {
+  margin-bottom: 2rem;
+}
+.apply-intro {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* The box where the Google Form is embedded.
+   To put your form here: open index.html, find the comment
+   <!-- PASTE GOOGLE FORM EMBED IFRAME CODE HERE --> and replace the
+   comment lines inside this box with your <iframe> code. */
+.form-embed {
+  margin-top: 2.4rem;
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius);
+  background: var(--white);
+  padding: 2rem 1.5rem;
+  min-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-
-.hero-slider {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+.form-embed iframe {
+  width: 100%;
+  min-height: 700px;
+  border: 0;
+  align-self: stretch;
 }
-
-.slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transform: scale(1.08);
-  transition: opacity 1.2s ease, transform 6s ease;
-}
-
-.slide.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 15, 0.7) 0%,
-    rgba(10, 10, 15, 0.5) 50%,
-    rgba(10, 10, 15, 0.85) 100%
-  );
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 720px;
-  padding: 0 24px;
-}
-
-.hero-title {
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 36px;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.slider-dots {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  gap: 10px;
-}
-
-.slider-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.slider-dot.active {
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent-glow);
-  transform: scale(1.2);
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-  display: inline-block;
-  padding: 14px 36px;
-  border-radius: var(--radius-full);
-  font-family: var(--font);
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-  background: var(--accent);
-  color: #fff;
-  text-align: center;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  background: #2563eb;
-}
-
-.btn-glow {
-  box-shadow: 0 0 0 rgba(59, 130, 246, 0);
-}
-
-.btn-glow:hover {
-  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(59, 130, 246, 0.15);
-}
-
-/* ===== SERVICES ===== */
-.services {
-  padding: 100px 0;
-  background: var(--bg-secondary);
-}
-
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-
-.section-subtitle {
-  text-align: center;
-  color: var(--text-secondary);
+.form-placeholder-note {
+  color: var(--muted);
   font-size: 1.05rem;
-  margin-bottom: 56px;
+  text-align: center;
 }
 
-.services-grid {
+/* The fallback line under the form: "If the form does not load, tap the button..." */
+.form-fallback {
+  margin-top: 1.8rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.form-fallback-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* The collapsible "For the site owner" box that explains how the
+   Google Form was set up. Keeps the confusion away from job applicants. */
+.owner-notes {
+  margin-top: 2.4rem;
+  background: var(--gold-soft);
+  border: 1px solid #F1DCAE;
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  font-size: 0.95rem;
+}
+.owner-notes summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 1rem;
+}
+.owner-notes ol,
+.owner-notes ul {
+  margin: 1rem 0 0.6rem;
+}
+.owner-notes ol {
+  padding-left: 1.3rem;
+  list-style: decimal;
+}
+.owner-notes ul {
+  padding-left: 1.3rem;
+  list-style: none;
+}
+.owner-notes li {
+  margin-bottom: 0.6rem;
+}
+.owner-notes ul li {
+  position: relative;
+  padding-left: 1rem;
+}
+.owner-notes ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--gold-dark);
+}
+.owner-notes h5 {
+  margin: 1.3rem 0 0.4rem;
+  color: var(--navy);
+  font-size: 1rem;
+  border-bottom: 1px solid #F1DCAE;
+  padding-bottom: 0.25rem;
+}
+
+/* ---------- 11. Contact Us ---------- */
+.contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-}
-
-.service-card {
-  background: var(--bg-card);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 36px 28px;
-  transition: var(--transition);
-}
-
-.service-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(59, 130, 246, 0.2);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
-.service-icon {
-  font-size: 2.4rem;
-  margin-bottom: 16px;
-}
-
-.service-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.service-card p {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  line-height: 1.6;
-}
-
-/* ===== CONTACT ===== */
-.contact {
-  padding: 100px 0;
-  background: var(--bg-primary);
-}
-
-.contact-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 48px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
   align-items: start;
 }
-
-.contact-info {
+.contact-item {
   display: flex;
-  flex-direction: column;
-  gap: 28px;
-  padding-top: 8px;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.info-icon {
-  font-size: 1.6rem;
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-card);
+  gap: 0.9rem;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  flex-shrink: 0;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 0.9rem;
+  box-shadow: var(--shadow);
 }
-
-.info-item h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 2px;
+.contact-item:hover {
+  border-color: var(--gold);
 }
-
-.info-item p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+.contact-item svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--gold-dark);
+  margin-top: 0.2rem;
 }
-
-/* Forms */
-.contact-form,
-.apply-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.form-group {
-  position: relative;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 14px 18px;
-  background: var(--bg-card);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius);
-  color: var(--text-primary);
-  font-family: var(--font);
-  font-size: 0.95rem;
-  transition: var(--transition);
-  outline: none;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--text-secondary);
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-}
-
-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a0a0b0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-}
-
-select option {
-  background: var(--bg-card);
-  color: var(--text-primary);
-}
-
-/* File upload */
-.file-upload {
-  position: relative;
-}
-
-.file-upload input[type="file"] {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.file-upload-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  background: var(--bg-card);
-  border: 1px dashed var(--glass-border);
-  border-radius: var(--radius);
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.file-upload:hover .file-upload-label {
-  border-color: var(--accent);
-  color: var(--text-primary);
-}
-
-.file-upload-label .upload-icon {
-  font-size: 1.3rem;
-}
-
-/* Form label */
-.form-label {
+.contact-item strong {
   display: block;
-  font-size: 0.85rem;
+  color: var(--navy);
   font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-  letter-spacing: 0.3px;
+}
+.contact-item p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  word-break: break-word;
+}
+.contact-item a:hover {
+  color: var(--gold-dark);
 }
 
-/* ===== APPLICATION PAGE ===== */
-.apply-page {
-  min-height: 100vh;
-  padding: 120px 0 80px;
-  background: var(--bg-primary);
-}
-
-.apply-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.apply-header h1 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.apply-header p {
-  color: var(--text-secondary);
-  font-size: 1.05rem;
-}
-
-/* Role tabs */
-.role-tabs {
+.social-row {
   display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 48px;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
   flex-wrap: wrap;
-  padding: 0 16px;
 }
-
-.role-tab {
-  padding: 12px 24px;
-  border-radius: var(--radius-full);
-  background: var(--bg-card);
-  border: 1px solid var(--glass-border);
-  color: var(--text-secondary);
-  font-family: var(--font);
+.btn-social {
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
   font-size: 0.9rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  white-space: nowrap;
+  color: var(--navy);
+  background: var(--white);
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-social:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
 }
 
-.role-tab:hover {
-  color: var(--text-primary);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.role-tab.active {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-  box-shadow: 0 0 20px var(--accent-glow);
-}
-
-/* Form card */
-.form-card {
-  max-width: 680px;
-  margin: 0 auto;
-  background: var(--bg-secondary);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-}
-
-.form-card h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.form-card .form-desc {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  margin-bottom: 28px;
-}
-
-/* Success message */
-.success-message {
-  display: none;
-  text-align: center;
-  padding: 48px 24px;
-}
-
-.success-message.show {
-  display: block;
-  animation: fadeIn 0.5s ease;
-}
-
-.success-icon {
-  font-size: 3.5rem;
-  margin-bottom: 16px;
-}
-
-.success-message h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.success-message p {
-  color: var(--text-secondary);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--glass-border);
-  padding: 24px 0;
-}
-
-.footer-container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.footer-logo {
-  font-weight: 700;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.footer-copy {
-  color: var(--text-secondary);
-  font-size: 0.82rem;
-}
-
-.footer-right {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-icon {
-  width: 40px;
-  height: 40px;
+/* The Google Map box (a placeholder until a real map is pasted in) */
+.map-box {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--white);
+  min-height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  border-radius: 50%;
-  color: var(--text-secondary);
-  transition: var(--transition);
+}
+.map-box iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border: 0;
+  display: block;
+}
+.map-placeholder {
+  color: var(--muted);
+  padding: 2rem;
+  text-align: center;
 }
 
-.footer-icon:hover {
-  color: var(--accent);
-  background: rgba(59, 130, 246, 0.1);
-  transform: translateY(-2px);
+/* ---------- 12. Footer ---------- */
+.site-footer {
+  background: var(--navy-deep);
+  color: #C9D6E8;
+  padding-top: 3.5rem;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.2rem;
+  padding-bottom: 2.5rem;
+}
+.footer-brand p {
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+  color: #9FB3CC;
+  max-width: 40ch;
+}
+.footer-col h4 {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin-bottom: 0.9rem;
+}
+.footer-col a {
+  display: block;
+  color: #B9C9DE;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+.footer-col a:hover {
+  color: var(--gold);
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  padding: 1.2rem 1rem;
+  font-size: 0.9rem;
+  color: #8FA5BF;
 }
 
-/* ===== ANIMATIONS ===== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* ---------- 13. Mobile friendly adjustments ---------- */
+@media (max-width: 960px) {
+  /* Hamburger appears, menu becomes a dropdown */
+  .nav-toggle {
+    display: inline-flex;
   }
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Loader spinner */
-.btn.loading {
-  pointer-events: none;
-  position: relative;
-  color: transparent;
-}
-
-.btn.loading::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  top: 50%;
-  left: 50%;
-  margin: -10px 0 0 -10px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    width: calc(100% - 32px);
-    padding: 10px 20px;
-  }
-
-  .nav-links {
-    display: none;
+  .site-nav {
     position: absolute;
-    top: calc(100% + 8px);
+    top: 100%;
     left: 0;
     right: 0;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: 16px;
     flex-direction: column;
-    gap: 4px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: var(--navy);
+    padding: 0.6rem 1.2rem 1.2rem;
+    border-bottom: 3px solid var(--gold);
+    display: none;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.25);
   }
-
-  .nav-links.open {
+  .site-header.nav-open .site-nav {
     display: flex;
   }
-
-  .nav-link {
-    width: 100%;
-    text-align: center;
-    padding: 12px;
+  .site-nav a {
+    padding: 0.75rem 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
   }
 
-  .nav-toggle {
-    display: flex;
-  }
-
-  .contact-wrapper {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .form-row {
+  .about-grid {
     grid-template-columns: 1fr;
   }
-
-  .form-card {
-    padding: 28px 20px;
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  .footer-container {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
-
-  .footer-left {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .services {
-    padding: 72px 0;
-  }
-
-  .contact {
-    padding: 72px 0;
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2.4rem;
+@media (max-width: 560px) {
+  .brand-tag {
+    display: none; /* hide the small tagline text on very small phones */
   }
-
-  .role-tabs {
-    gap: 6px;
+  .brand-name {
+    font-size: 1.15rem;
   }
-
-  .role-tab {
-    padding: 10px 16px;
-    font-size: 0.82rem;
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .lang-toggle {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.78rem;
+  }
+  .header-inner {
+    gap: 0.5rem;
+  }
+  .hero {
+    padding: 4rem 0 4.5rem;
+  }
+  .hero-actions .btn {
+    width: 100%; /* full-width buttons are much easier to tap on a phone */
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
   }
 }

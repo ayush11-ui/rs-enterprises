@@ -1,147 +1,654 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RS Enterprises — Professional Security Services</title>
+  <title>RS Enterprises | Security &amp; Manpower Services</title>
+  <meta name="description" content="RS Enterprises - trusted security guard, gunman, housekeeping staff and supervisor manpower service provider in India. Apply for a job online in English or Hindi." />
+
+  <!-- Small shield logo shown in the browser tab -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- The Fredoka font (the only font this site uses). -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet" />
+
+  <!-- Our own stylesheet (colours, layout, sizes) -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
+
+<!-- ======================================================================
+     HOW THIS PAGE IS BUILT (read this once, it saves time later)
+     ======================================================================
+     This is ONE single page. Every section (Home, About, Services,
+     Vacancies, Apply, Contact) lives on this page, one below the other.
+     The menu at the top simply slides down to each section.
+
+     FOLDER LIST
+       - index.html    -> this file (the whole website)
+       - css/style.css -> all colours, fonts and layout
+       - js/main.js    -> language switch, smooth scrolling, phone menu
+       - favicon.svg   -> the small logo in the browser tab
+
+     TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
+     in this file and type over them. Each text also carries a Hindi copy,
+     shown like this:  data-en="English"  data-hi="à¤¹à¤¿à¤‚à¤¦à¥€"
+
+     PLACEHOLDERS YOU MUST FILL IN LATER (search for these words):
+       [X] years  ,  [ADD DETAILS]  ,  [CITY, STATE]  ,  [PASTE GOOGLE FORM LINK HERE]
+       +91XXXXXXXXXX  ,  919XXXXXXXXX  ,  [yourdomain].com  ,  [Street / Building]
+     ==================================================================== -->
+
 <body>
 
-  <!-- ======= NAVBAR ======= -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo">
-        <span class="logo-icon">🛡</span>
-        <span class="logo-text">RS Enterprises</span>
+  <!-- ================= TOP MENU (sticky) ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+      <!-- Company logo: shield icon + RS Enterprises name (left side) -->
+      <a href="#home" class="brand" aria-label="RS Enterprises - back to top">
+        <svg class="brand-logo" viewBox="0 0 64 64" role="img" aria-hidden="true">
+          <path d="M32 3 56 11v19c0 16-10.5 27-24 31C18.5 57 8 46 8 30V11Z" fill="#E9A319"/>
+          <path d="M32 8 50 14v15.5c0 12.8-8 21.5-18 25.2C22 51 14 42.3 14 29.5V14Z" fill="#0B1F3A"/>
+          <text x="32" y="41" font-size="22" font-weight="700" text-anchor="middle" fill="#E9A319" font-family="Fredoka,Arial,sans-serif">RS</text>
+        </svg>
+        <span>
+          <span class="brand-name">RS Enterprises</span>
+          <span class="brand-tag" data-en="Security &amp; Manpower Services" data-hi="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤”à¤° à¤®à¥ˆà¤¨à¤ªà¤¾à¤µà¤° à¤¸à¥‡à¤µà¤¾à¤à¤‚">Security &amp; Manpower Services</span>
+        </span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="apply.html" class="nav-link nav-cta">Apply</a></li>
-      </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
 
-  <!-- ======= HERO SECTION ======= -->
-  <section class="hero" id="home">
-    <div class="hero-slider" id="heroSlider">
-      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80')"></div>
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?w=1920&q=80')"></div>
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1920&q=80')"></div>
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=1920&q=80')"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title fade-up">RS Enterprises</h1>
-      <p class="hero-subtitle fade-up delay-1">
-        Delivering trusted, professional security solutions — from corporate protection
-        and surveillance systems to on-ground patrol and event security across India.
-      </p>
-      <a href="apply.html" class="btn btn-glow fade-up delay-2">Apply Now</a>
-    </div>
-    <div class="slider-dots" id="sliderDots"></div>
-  </section>
+      <!-- Menu links (they slide smoothly to each section) -->
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <a href="#home"      data-en="Home"          data-hi="à¤¹à¥‹à¤®">Home</a>
+        <a href="#about"     data-en="About Us"      data-hi="à¤¹à¤®à¤¾à¤°à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚">About Us</a>
+        <a href="#services"  data-en="Our Services"  data-hi="à¤¹à¤®à¤¾à¤°à¥€ à¤¸à¥‡à¤µà¤¾à¤à¤‚">Our Services</a>
+        <a href="#vacancies" data-en="Job Vacancies" data-hi="à¤¨à¥Œà¤•à¤°à¥€ à¤•à¥€ à¤°à¤¿à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤‚">Job Vacancies</a>
+        <a href="#apply"     data-en="Apply Now"     data-hi="à¤…à¤­à¥€ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply Now</a>
+        <a href="#contact"   data-en="Contact Us"    data-hi="à¤¸à¤‚à¤ªà¤°à¥à¤• à¤•à¤°à¥‡à¤‚">Contact Us</a>
+      </nav>
 
-  <!-- ======= SERVICES (brief overview) ======= -->
-  <section class="services" id="services">
-    <div class="container">
-      <h2 class="section-title fade-in">Our Services</h2>
-      <p class="section-subtitle fade-in">Comprehensive security solutions tailored to your needs</p>
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">🏢</div>
-          <h3>Corporate Security</h3>
-          <p>End-to-end security management for offices, IT parks, and commercial complexes with trained professionals.</p>
+      <!-- Right side: language switch button + Apply Now button -->
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch between English and Hindi">EN | à¤¹à¤¿à¤‚à¤¦à¥€</button>
+        <a class="btn btn-gold btn-sm" href="#apply"><span data-en="Apply Now" data-hi="à¤…à¤­à¥€ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply Now</span></a>
+
+        <!-- Hamburger button, only used on mobile phones -->
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO (Home / welcome section) ================= -->
+    <section class="hero" id="home">
+      <!--
+        REPLACE WITH COMPANY PHOTO:
+        To show a real photo here, put a photo file in this project (for
+        example css-free file "photo.jpg") and add right after this comment:
+            <img class="hero-photo" src="photo.jpg" alt="RS Enterprises team">
+        Then ask anyone to add a few lines in css/style.css for you, OR
+        simply tell your web helper: "please show photo.jpg in the hero".
+        The blue gradient below is a clean professional stand-in for now.
+      -->
+      <div class="container">
+        <p class="hero-chip"><span data-en="Trusted &bull; Trained &bull; Verified Manpower" data-hi="à¤­à¤°à¥‹à¤¸à¥‡à¤®à¤‚à¤¦ &bull; à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ &bull; à¤œà¤¾à¤‚à¤šà¥€ à¤—à¤ˆ à¤®à¥ˆà¤¨à¤ªà¤¾à¤µà¤°">Trusted &bull; Trained &bull; Verified Manpower</span></p>
+        <h1><span data-en="Trusted Security &amp; Manpower Services in India" data-hi="à¤­à¤¾à¤°à¤¤ à¤®à¥‡à¤‚ à¤­à¤°à¥‹à¤¸à¥‡à¤®à¤‚à¤¦ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤”à¤° à¤®à¥ˆà¤¨à¤ªà¤¾à¤µà¤° à¤¸à¥‡à¤µà¤¾à¤à¤‚">Trusted Security &amp; Manpower Services in India</span></h1>
+        <p class="hero-sub"><span data-en="We provide trained security guards, gunmen, housekeeping staff and supervisors for homes, offices, factories, schools, hospitals and more." data-hi="à¤¹à¤® à¤˜à¤°à¥‹à¤‚, à¤¦à¤«à¥à¤¤à¤°à¥‹à¤‚, à¤«à¥ˆà¤•à¥à¤Ÿà¥à¤°à¤¿à¤¯à¥‹à¤‚, à¤¸à¥à¤•à¥‚à¤²à¥‹à¤‚, à¤…à¤¸à¥à¤ªà¤¤à¤¾à¤²à¥‹à¤‚ à¤”à¤° à¤…à¤¨à¥à¤¯ à¤œà¤—à¤¹à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡, à¤—à¤¨à¤®à¥ˆà¤¨, à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— à¤¸à¥à¤Ÿà¤¾à¤« à¤”à¤° à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤° à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤•à¤°à¤¾à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤">We provide trained security guards, gunmen, housekeeping staff and supervisors for homes, offices, factories, schools, hospitals and more.</span></p>
+
+        <div class="hero-actions">
+          <a class="btn btn-gold btn-lg" href="#apply"><span data-en="Apply for a Job" data-hi="à¤¨à¥Œà¤•à¤°à¥€ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply for a Job</span></a>
+          <a class="btn btn-outline btn-lg" href="#contact"><span data-en="Contact Us" data-hi="à¤¸à¤‚à¤ªà¤°à¥à¤• à¤•à¤°à¥‡à¤‚">Contact Us</span></a>
         </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">📹</div>
-          <h3>CCTV Surveillance</h3>
-          <p>24/7 monitoring with state-of-the-art surveillance systems, real-time alerts, and incident reporting.</p>
+
+        <p class="hero-note"><span data-en="The application form below can also be filled in Hindi." data-hi="à¤¨à¥€à¤šà¥‡ à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤†à¤µà¥‡à¤¦à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤¹à¤¿à¤‚à¤¦à¥€ à¤®à¥‡à¤‚ à¤­à¥€ à¤­à¤°à¤¾ à¤œà¤¾ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤">The application form below can also be filled in Hindi.</span></p>
+      </div>
+    </section>
+
+
+    <!-- ================= ABOUT US ================= -->
+    <section class="section" id="about">
+      <div class="container">
+
+        <div class="section-head">
+          <!-- [ADD DETAILS] - the subtitle under the heading is a placeholder -->
+          <h2 data-en="About Us" data-hi="à¤¹à¤®à¤¾à¤°à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚">About Us</h2>
+          <p data-en="Simple, honest and dependable manpower." data-hi="à¤¸à¤°à¤², à¤ˆà¤®à¤¾à¤¨à¤¦à¤¾à¤° à¤”à¤° à¤­à¤°à¥‹à¤¸à¥‡à¤®à¤‚à¤¦ à¤®à¥ˆà¤¨à¤ªà¤¾à¤µà¤°à¥¤">Simple, honest and dependable manpower.</p>
         </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🚔</div>
-          <h3>Patrol Services</h3>
-          <p>Regular mobile patrols covering residential areas, industrial zones, and high-risk locations.</p>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <!-- Replace the [X] below with the real number of years, e.g. "12". -->
+            <p data-en="RS Enterprises is a security and manpower company in India. We provide trained and honest staff for offices, factories, malls, hospitals, schools, colonies and homes." data-hi="RS Enterprises à¤­à¤¾à¤°à¤¤ à¤•à¥€ à¤à¤• à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤”à¤° à¤®à¥ˆà¤¨à¤ªà¤¾à¤µà¤° à¤•à¤‚à¤ªà¤¨à¥€ à¤¹à¥ˆà¥¤ à¤¹à¤® à¤¦à¤«à¥à¤¤à¤°à¥‹à¤‚, à¤«à¥ˆà¤•à¥à¤Ÿà¥à¤°à¤¿à¤¯à¥‹à¤‚, à¤®à¥‰à¤², à¤…à¤¸à¥à¤ªà¤¤à¤¾à¤²à¥‹à¤‚, à¤¸à¥à¤•à¥‚à¤²à¥‹à¤‚, à¤•à¥‰à¤²à¥‹à¤¨à¤¿à¤¯à¥‹à¤‚ à¤”à¤° à¤˜à¤°à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤”à¤° à¤ˆà¤®à¤¾à¤¨à¤¦à¤¾à¤° à¤¸à¥à¤Ÿà¤¾à¤« à¤¦à¥‡à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤">RS Enterprises is a security and manpower company in India. We provide trained and honest staff for offices, factories, malls, hospitals, schools, colonies and homes.</p>
+
+            <!-- [ADD DETAILS] - write 2-3 lines of real company history here. -->
+            <p data-en="Every guard and worker we send is screened, verified and trained before duty, so you get staff you can trust. We have worked in this field for [X] years. [ADD DETAILS - write 2 to 3 more lines about your company story and values here.]" data-hi="à¤¹à¤® à¤œà¥‹ à¤­à¥€ à¤—à¤¾à¤°à¥à¤¡ à¤¯à¤¾ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€ à¤­à¥‡à¤œà¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤¡à¥à¤¯à¥‚à¤Ÿà¥€ à¤¸à¥‡ à¤ªà¤¹à¤²à¥‡ à¤‰à¤¸à¤•à¥€ à¤œà¤¾à¤‚à¤š, à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¨ à¤”à¤° à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤£ à¤¹à¥‹ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¤¾à¤•à¤¿ à¤†à¤ªà¤•à¥‹ à¤­à¤°à¥‹à¤¸à¥‡à¤®à¤‚à¤¦ à¤¸à¥à¤Ÿà¤¾à¤« à¤®à¤¿à¤²à¥‡à¥¤ à¤¹à¤® à¤‡à¤¸ à¤•à¥à¤·à¥‡à¤¤à¥à¤° à¤®à¥‡à¤‚ [X] à¤¸à¤¾à¤² à¤¸à¥‡ à¤•à¤¾à¤® à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚à¥¤ [ADD DETAILS - à¤…à¤ªà¤¨à¥€ à¤•à¤‚à¤ªà¤¨à¥€ à¤•à¥€ à¤•à¤¹à¤¾à¤¨à¥€ à¤”à¤° à¤®à¥‚à¤²à¥à¤¯à¥‹à¤‚ à¤•à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚ 2 à¤¸à¥‡ 3 à¤²à¤¾à¤‡à¤¨ à¤¯à¤¹à¤¾à¤‚ à¤²à¤¿à¤–à¥‡à¤‚à¥¤]">Every guard and worker we send is screened, verified and trained before duty, so you get staff you can trust. We have worked in this field for [X] years. [ADD DETAILS - write 2 to 3 more lines about your company story and values here.]</p>
+
+            <!-- [ADD DETAILS] - these trust points are placeholders. Add real details. -->
+            <ul class="check-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span data-en="PSARA-compliant guard deployment [ADD DETAILS]" data-hi="PSARA-à¤…à¤¨à¥à¤¸à¤¾à¤° à¤—à¤¾à¤°à¥à¤¡ à¤¤à¥ˆà¤¨à¤¾à¤¤à¥€ [ADD DETAILS]">PSARA-compliant guard deployment [ADD DETAILS]</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span data-en="Verified, background-checked staff" data-hi="à¤œà¤¾à¤‚à¤šà¥‡ à¤”à¤° à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¿à¤¤ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€">Verified, background-checked staff</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span data-en="Trained, uniformed and disciplined team" data-hi="à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤, à¤¯à¥‚à¤¨à¤¿à¤«à¥‰à¤°à¥à¤® à¤µà¤¾à¤²à¥€ à¤”à¤° à¤…à¤¨à¥à¤¶à¤¾à¤¸à¤¿à¤¤ à¤Ÿà¥€à¤®">Trained, uniformed and disciplined team</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span data-en="On-time placement and reliable replacements" data-hi="à¤¸à¤®à¤¯ à¤ªà¤° à¤­à¤°à¥à¤¤à¥€ à¤”à¤° à¤­à¤°à¥‹à¤¸à¥‡à¤®à¤‚à¤¦ à¤°à¤¿à¤ªà¥à¤²à¥‡à¤¸à¤®à¥‡à¤‚à¤Ÿ">On-time placement and reliable replacements</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- The small white "promise" card next to the About text [ADD DETAILS] -->
+          <aside class="about-card">
+            <h3 data-en="What we promise" data-hi="à¤¹à¤® à¤•à¥à¤¯à¤¾ à¤µà¤¾à¤¦à¤¾ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚">What we promise</h3>
+            <p data-en="On-time, trained, well-mannered staff. If a replacement is ever needed, we arrange it within [X] hours. Our staff earn fair wages and work in safe conditions." data-hi="à¤¸à¤®à¤¯ à¤ªà¤°, à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤”à¤° à¤…à¤šà¥à¤›à¥‡ à¤µà¥à¤¯à¤µà¤¹à¤¾à¤° à¤µà¤¾à¤²à¤¾ à¤¸à¥à¤Ÿà¤¾à¤«à¥¤ à¤…à¤—à¤° à¤•à¤­à¥€ à¤¨à¤¯à¤¾ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€ à¤šà¤¾à¤¹à¤¿à¤, à¤¤à¥‹ à¤¹à¤® [X] à¤˜à¤‚à¤Ÿà¥‡ à¤•à¥‡ à¤­à¥€à¤¤à¤° à¤µà¥à¤¯à¤µà¤¸à¥à¤¥à¤¾ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤¹à¤®à¤¾à¤°à¤¾ à¤¸à¥à¤Ÿà¤¾à¤« à¤‰à¤šà¤¿à¤¤ à¤µà¥‡à¤¤à¤¨ à¤ªà¤¾à¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤¸à¥à¤°à¤•à¥à¤·à¤¿à¤¤ à¤ªà¤°à¤¿à¤¸à¥à¤¥à¤¿à¤¤à¤¿à¤¯à¥‹à¤‚ à¤®à¥‡à¤‚ à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆà¥¤">On-time, trained, well-mannered staff. If a replacement is ever needed, we arrange it within [X] hours. Our staff earn fair wages and work in safe conditions.</p>
+          </aside>
         </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🎪</div>
-          <h3>Event Security</h3>
-          <p>Crowd management, access control, and VIP protection for events of all scales.</p>
+
+        <!-- Trust stats (numbers are placeholders - update them with real figures) -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 2.5V11c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V5.5z"/><path d="M8.8 11.8l2.2 2.2 4.2-4.2"/></svg>
+            </span>
+            <span class="stat-num">500+</span>
+            <span class="stat-label" data-en="Guards Deployed" data-hi="à¤—à¤¾à¤°à¥à¤¡ à¤¤à¥ˆà¤¨à¤¾à¤¤">Guards Deployed</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/></svg>
+            </span>
+            <span class="stat-num">50+</span>
+            <span class="stat-label" data-en="Happy Clients" data-hi="à¤¸à¤‚à¤¤à¥à¤·à¥à¤Ÿ à¤—à¥à¤°à¤¾à¤¹à¤•">Happy Clients</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            </span>
+            <span class="stat-num">24x7</span>
+            <span class="stat-label" data-en="Support Available" data-hi="à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤‰à¤ªà¤²à¤¬à¥à¤§">Support Available</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 3.5 7.5v6c0 4.5 3.6 7.6 8.5 8.5 4.9-.9 8.5-4 8.5-8.5v-6z"/><path d="M12 8v4M12 15.5h.01"/></svg>
+            </span>
+            <span class="stat-num">[X]</span>
+            <span class="stat-label" data-en="Years of Experience" data-hi="à¤µà¤°à¥à¤·à¥‹à¤‚ à¤•à¤¾ à¤…à¤¨à¥à¤­à¤µ">Years of Experience</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= OUR SERVICES ================= -->
+    <section class="section alt" id="services">
+      <div class="container">
+
+        <div class="section-head">
+          <h2 data-en="Our Services" data-hi="à¤¹à¤®à¤¾à¤°à¥€ à¤¸à¥‡à¤µà¤¾à¤à¤‚">Our Services</h2>
+          <p data-en="Four simple services, all with trained and honest staff." data-hi="à¤šà¤¾à¤° à¤†à¤¸à¤¾à¤¨ à¤¸à¥‡à¤µà¤¾à¤à¤‚, à¤¸à¤­à¥€ à¤®à¥‡à¤‚ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤”à¤° à¤ˆà¤®à¤¾à¤¨à¤¦à¤¾à¤° à¤¸à¥à¤Ÿà¤¾à¤«à¥¤">Four simple services, all with trained and honest staff.</p>
+        </div>
+
+        <div class="cards-grid">
+
+          <!-- Service 1: Security Guard -->
+          <article class="card service-card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5V11c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V5.5z"/><path d="M8.8 11.8l2.2 2.2 4.2-4.2"/></svg>
+            </span>
+            <h3>
+              <span data-en="Security Guard" data-hi="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡">Security Guard</span>
+              <span class="role-hi" data-en="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡" data-hi="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡">à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡</span>
+            </h3>
+            <p data-en="Trained security guards for offices, factories, shops, hospitals, colonies and homes. Guards handle entry control, checking, patrolling and safety." data-hi="à¤¦à¤«à¥à¤¤à¤°à¥‹à¤‚, à¤«à¥ˆà¤•à¥à¤Ÿà¥à¤°à¤¿à¤¯à¥‹à¤‚, à¤¦à¥à¤•à¤¾à¤¨à¥‹à¤‚, à¤…à¤¸à¥à¤ªà¤¤à¤¾à¤²à¥‹à¤‚, à¤•à¥‰à¤²à¥‹à¤¨à¤¿à¤¯à¥‹à¤‚ à¤”à¤° à¤˜à¤°à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡à¥¤ à¤—à¤¾à¤°à¥à¤¡ à¤à¤‚à¤Ÿà¥à¤°à¥€ à¤¨à¤¿à¤¯à¤‚à¤¤à¥à¤°à¤£, à¤œà¤¾à¤‚à¤š, à¤—à¤¶à¥à¤¤ à¤”à¤° à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤•à¤¾ à¤§à¥à¤¯à¤¾à¤¨ à¤°à¤–à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤">Trained security guards for offices, factories, shops, hospitals, colonies and homes. Guards handle entry control, checking, patrolling and safety.</p>
+          </article>
+
+          <!-- Service 2: Gunman -->
+          <article class="card service-card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 3.8 4.2.6-3 3 .7 4.2-3.8-2-3.8 2 .7-4.2-3-3 4.2-.6z"/></svg>
+            </span>
+            <h3>
+              <span data-en="Gunman" data-hi="à¤—à¤¨à¤®à¥ˆà¤¨">Gunman</span>
+              <span class="role-hi" data-en="à¤¬à¤‚à¤¦à¥‚à¤•à¤§à¤¾à¤°à¥€" data-hi="à¤¬à¤‚à¤¦à¥‚à¤•à¤§à¤¾à¤°à¥€">à¤¬à¤‚à¤¦à¥‚à¤•à¤§à¤¾à¤°à¥€</span>
+            </h3>
+            <p data-en="Licensed gunmen for VIP, cash, jewellery and high-value protection. Every gunman holds a valid gun licence and security training." data-hi="à¤µà¥€à¤†à¤ˆà¤ªà¥€, à¤¨à¤•à¤¦à¥€, à¤†à¤­à¥‚à¤·à¤£ à¤”à¤° à¤¬à¤¹à¥à¤®à¥‚à¤²à¥à¤¯ à¤¸à¤¾à¤®à¤¾à¤¨ à¤•à¥€ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤•à¥‡ à¤²à¤¿à¤ à¤²à¤¾à¤‡à¤¸à¥‡à¤‚à¤¸à¤§à¤¾à¤°à¥€ à¤—à¤¨à¤®à¥ˆà¤¨à¥¤ à¤¹à¤° à¤—à¤¨à¤®à¥ˆà¤¨ à¤•à¥‡ à¤ªà¤¾à¤¸ à¤µà¥ˆà¤§ à¤¬à¤‚à¤¦à¥‚à¤• à¤²à¤¾à¤‡à¤¸à¥‡à¤‚à¤¸ à¤”à¤° à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤£ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤">Licensed gunmen for VIP, cash, jewellery and high-value protection. Every gunman holds a valid gun licence and security training.</p>
+          </article>
+
+          <!-- Service 3: Housekeeping Staff -->
+          <article class="card service-card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5z"/><path d="M19 15l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8z"/></svg>
+            </span>
+            <h3>
+              <span data-en="Housekeeping Staff" data-hi="à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— à¤¸à¥à¤Ÿà¤¾à¤«">Housekeeping Staff</span>
+              <span class="role-hi" data-en="à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€" data-hi="à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€">à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€</span>
+            </h3>
+            <p data-en="Trained cleaning staff for offices, hospitals, hotels, schools and homes. Regular cleaning, floor care and sanitisation to keep every place neat." data-hi="à¤¦à¤«à¥à¤¤à¤°à¥‹à¤‚, à¤…à¤¸à¥à¤ªà¤¤à¤¾à¤²à¥‹à¤‚, à¤¹à¥‹à¤Ÿà¤², à¤¸à¥à¤•à¥‚à¤² à¤”à¤° à¤˜à¤°à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€à¥¤ à¤¹à¤° à¤œà¤—à¤¹ à¤¸à¤¾à¤«-à¤¸à¥à¤¥à¤°à¤¾ à¤°à¤–à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¨à¤¿à¤¯à¤®à¤¿à¤¤ à¤¸à¤«à¤¾à¤ˆ, à¤«à¤°à¥à¤¶ à¤•à¥€ à¤¦à¥‡à¤–à¤­à¤¾à¤² à¤”à¤° à¤¸à¥ˆà¤¨à¤¿à¤Ÿà¤¾à¤‡à¤œà¥‡à¤¶à¤¨à¥¤">Trained cleaning staff for offices, hospitals, hotels, schools and homes. Regular cleaning, floor care and sanitisation to keep every place neat.</p>
+          </article>
+
+          <!-- Service 4: Supervisor -->
+          <article class="card service-card">
+            <span class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/><path d="M16 11l2 2 4-4"/></svg>
+            </span>
+            <h3>
+              <span data-en="Supervisor" data-hi="à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°">Supervisor</span>
+              <span class="role-hi" data-en="à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°" data-hi="à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°">à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°</span>
+            </h3>
+            <p data-en="Experienced supervisors to manage guard and housekeeping teams. They look after duty posts, attendance, uniforms, reports and discipline." data-hi="à¤—à¤¾à¤°à¥à¤¡ à¤”à¤° à¤¸à¤«à¤¾à¤ˆ à¤Ÿà¥€à¤®à¥‹à¤‚ à¤•à¥‹ à¤¸à¤‚à¤­à¤¾à¤²à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤…à¤¨à¥à¤­à¤µà¥€ à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°à¥¤ à¤µà¥‡ à¤¡à¥à¤¯à¥‚à¤Ÿà¥€ à¤ªà¥‹à¤¸à¥à¤Ÿ, à¤¹à¤¾à¤œà¤¼à¤¿à¤°à¥€, à¤¯à¥‚à¤¨à¤¿à¤«à¥‰à¤°à¥à¤®, à¤°à¤¿à¤ªà¥‹à¤°à¥à¤Ÿ à¤”à¤° à¤…à¤¨à¥à¤¶à¤¾à¤¸à¤¨ à¤•à¤¾ à¤§à¥à¤¯à¤¾à¤¨ à¤°à¤–à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤">Experienced supervisors to manage guard and housekeeping teams. They look after duty posts, attendance, uniforms, reports and discipline.</p>
+          </article>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ======= CONTACT SECTION ======= -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <h2 class="section-title fade-in">Get In Touch</h2>
-      <p class="section-subtitle fade-in">Have a query? We'd love to hear from you.</p>
-      <div class="contact-wrapper">
-        <div class="contact-info fade-in">
-          <div class="info-item">
-            <span class="info-icon">📞</span>
-            <div>
-              <h4>Call Us</h4>
-              <p>+91 98XXX XXXXX</p>
+
+    <!-- ================= CURRENT JOB VACANCIES ================= -->
+    <section class="section" id="vacancies">
+      <div class="container">
+
+        <div class="section-head">
+          <h2 data-en="Current Job Vacancies" data-hi="à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤¨à¥Œà¤•à¤°à¥€ à¤•à¥€ à¤°à¤¿à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤‚">Current Job Vacancies</h2>
+          <p data-en="We are hiring. Choose the post that suits you and apply in English or Hindi." data-hi="à¤¹à¤® à¤­à¤°à¥à¤¤à¥€ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤…à¤ªà¤¨à¥‡ à¤²à¤¿à¤ à¤¸à¤¹à¥€ à¤ªà¤¦ à¤šà¥à¤¨à¥‡à¤‚ à¤”à¤° à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¤¼à¥€ à¤¯à¤¾ à¤¹à¤¿à¤‚à¤¦à¥€ à¤®à¥‡à¤‚ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚à¥¤">We are hiring. Choose the post that suits you and apply in English or Hindi.</p>
+        </div>
+
+        <div class="cards-grid">
+
+          <!-- Vacancy 1: Security Guard -->
+          <article class="card vacancy-card">
+            <div class="vacancy-info">
+              <h3>
+                <span data-en="Security Guard" data-hi="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡">Security Guard</span>
+                <span class="role-hi" data-en="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡" data-hi="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡">à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤—à¤¾à¤°à¥à¤¡</span>
+              </h3>
+              <p class="vacancy-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-en="Location: [CITY, STATE]" data-hi="à¤¸à¥à¤¥à¤¾à¤¨: [à¤¶à¤¹à¤°, à¤°à¤¾à¤œà¥à¤¯]">Location: [CITY, STATE]</span>
+              </p>
+              <ul class="vacancy-requirements">
+                <li data-en="Age: 18 to 50 years" data-hi="à¤†à¤¯à¥: 18 à¤¸à¥‡ 50 à¤¸à¤¾à¤²">Age: 18 to 50 years</li>
+                <li data-en="Male and female both can apply" data-hi="à¤ªà¥à¤°à¥à¤· à¤”à¤° à¤®à¤¹à¤¿à¤²à¤¾ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚">Male and female both can apply</li>
+                <li data-en="Experience not required - training will be given" data-hi="à¤…à¤¨à¥à¤­à¤µ à¤œà¤¼à¤°à¥‚à¤°à¥€ à¤¨à¤¹à¥€à¤‚ - à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤£ à¤¦à¤¿à¤¯à¤¾ à¤œà¤¾à¤à¤—à¤¾">Experience not required - training will be given</li>
+                <li data-en="Should be physically fit and honest" data-hi="à¤¶à¤¾à¤°à¥€à¤°à¤¿à¤• à¤°à¥‚à¤ª à¤¸à¥‡ à¤«à¤¿à¤Ÿ à¤”à¤° à¤ˆà¤®à¤¾à¤¨à¤¦à¤¾à¤° à¤¹à¥‹à¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤">Should be physically fit and honest</li>
+              </ul>
             </div>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">✉️</span>
-            <div>
-              <h4>Email Us</h4>
-              <p>info@rsenterprises.in</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">📍</span>
-            <div>
-              <h4>Visit Us</h4>
-              <p>New Delhi, India</p>
-            </div>
-          </div>
-        </div>
-        <form class="contact-form fade-in" id="contactForm">
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name" required />
-          </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email" required />
-          </div>
-          <div class="form-group">
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-glow">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
+            <a class="btn btn-navy" href="#apply"><span data-en="Apply for this Post" data-hi="à¤‡à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply for this Post</span></a>
+          </article>
 
-  <!-- ======= FOOTER ======= -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-left">
-        <span class="footer-logo">🛡 RS Enterprises</span>
-        <p class="footer-copy">&copy; 2026 RS Enterprises. All rights reserved.</p>
+          <!-- Vacancy 2: Gunman -->
+          <article class="card vacancy-card">
+            <div class="vacancy-info">
+              <h3>
+                <span data-en="Gunman" data-hi="à¤—à¤¨à¤®à¥ˆà¤¨">Gunman</span>
+                <span class="role-hi" data-en="à¤¬à¤‚à¤¦à¥‚à¤•à¤§à¤¾à¤°à¥€" data-hi="à¤¬à¤‚à¤¦à¥‚à¤•à¤§à¤¾à¤°à¥€">à¤¬à¤‚à¤¦à¥‚à¤•à¤§à¤¾à¤°à¥€</span>
+              </h3>
+              <p class="vacancy-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-en="Location: [CITY, STATE]" data-hi="à¤¸à¥à¤¥à¤¾à¤¨: [à¤¶à¤¹à¤°, à¤°à¤¾à¤œà¥à¤¯]">Location: [CITY, STATE]</span>
+              </p>
+              <ul class="vacancy-requirements">
+                <li data-en="Age: 25 to 45 years" data-hi="à¤†à¤¯à¥: 25 à¤¸à¥‡ 45 à¤¸à¤¾à¤²">Age: 25 to 45 years</li>
+                <li data-en="Male only" data-hi="à¤•à¥‡à¤µà¤² à¤ªà¥à¤°à¥à¤·">Male only</li>
+                <li data-en="Valid gun licence is compulsory" data-hi="à¤µà¥ˆà¤§ à¤¬à¤‚à¤¦à¥‚à¤• à¤²à¤¾à¤‡à¤¸à¥‡à¤‚à¤¸ à¤œà¤¼à¤°à¥‚à¤°à¥€ à¤¹à¥ˆ">Valid gun licence is compulsory</li>
+                <li data-en="2+ years of guarding experience preferred" data-hi="2+ à¤¸à¤¾à¤² à¤•à¤¾ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤…à¤¨à¥à¤­à¤µ à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾">2+ years of guarding experience preferred</li>
+              </ul>
+            </div>
+            <a class="btn btn-navy" href="#apply"><span data-en="Apply for this Post" data-hi="à¤‡à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply for this Post</span></a>
+          </article>
+
+          <!-- Vacancy 3: Housekeeping Staff -->
+          <article class="card vacancy-card">
+            <div class="vacancy-info">
+              <h3>
+                <span data-en="Housekeeping Staff" data-hi="à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— à¤¸à¥à¤Ÿà¤¾à¤«">Housekeeping Staff</span>
+                <span class="role-hi" data-en="à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€" data-hi="à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€">à¤¸à¤«à¤¾à¤ˆ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€</span>
+              </h3>
+              <p class="vacancy-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-en="Location: [CITY, STATE]" data-hi="à¤¸à¥à¤¥à¤¾à¤¨: [à¤¶à¤¹à¤°, à¤°à¤¾à¤œà¥à¤¯]">Location: [CITY, STATE]</span>
+              </p>
+              <ul class="vacancy-requirements">
+                <li data-en="Age: 18 to 50 years" data-hi="à¤†à¤¯à¥: 18 à¤¸à¥‡ 50 à¤¸à¤¾à¤²">Age: 18 to 50 years</li>
+                <li data-en="Male and female both can apply" data-hi="à¤ªà¥à¤°à¥à¤· à¤”à¤° à¤®à¤¹à¤¿à¤²à¤¾ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚">Male and female both can apply</li>
+                <li data-en="Experience not required" data-hi="à¤…à¤¨à¥à¤­à¤µ à¤œà¤¼à¤°à¥‚à¤°à¥€ à¤¨à¤¹à¥€à¤‚">Experience not required</li>
+                <li data-en="Hardworking, honest and clean" data-hi="à¤®à¥‡à¤¹à¤¨à¤¤à¥€, à¤ˆà¤®à¤¾à¤¨à¤¦à¤¾à¤° à¤”à¤° à¤¸à¤¾à¤«-à¤¸à¥à¤¥à¤°à¤¾ à¤µà¥à¤¯à¤µà¤¹à¤¾à¤°">Hardworking, honest and clean</li>
+              </ul>
+            </div>
+            <a class="btn btn-navy" href="#apply"><span data-en="Apply for this Post" data-hi="à¤‡à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply for this Post</span></a>
+          </article>
+
+          <!-- Vacancy 4: Supervisor -->
+          <article class="card vacancy-card">
+            <div class="vacancy-info">
+              <h3>
+                <span data-en="Supervisor" data-hi="à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°">Supervisor</span>
+                <span class="role-hi" data-en="à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°" data-hi="à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°">à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°</span>
+              </h3>
+              <p class="vacancy-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span data-en="Location: [CITY, STATE]" data-hi="à¤¸à¥à¤¥à¤¾à¤¨: [à¤¶à¤¹à¤°, à¤°à¤¾à¤œà¥à¤¯]">Location: [CITY, STATE]</span>
+              </p>
+              <ul class="vacancy-requirements">
+                <li data-en="Age: 25 to 50 years" data-hi="à¤†à¤¯à¥: 25 à¤¸à¥‡ 50 à¤¸à¤¾à¤²">Age: 25 to 50 years</li>
+                <li data-en="Male and female both can apply" data-hi="à¤ªà¥à¤°à¥à¤· à¤”à¤° à¤®à¤¹à¤¿à¤²à¤¾ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚">Male and female both can apply</li>
+                <li data-en="2+ years of security experience" data-hi="à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤•à¥à¤·à¥‡à¤¤à¥à¤° à¤®à¥‡à¤‚ 2+ à¤¸à¤¾à¤² à¤•à¤¾ à¤…à¤¨à¥à¤­à¤µ">2+ years of security experience</li>
+                <li data-en="Should manage duty posts, reports and discipline" data-hi="à¤¡à¥à¤¯à¥‚à¤Ÿà¥€ à¤ªà¥‹à¤¸à¥à¤Ÿ, à¤°à¤¿à¤ªà¥‹à¤°à¥à¤Ÿ à¤”à¤° à¤…à¤¨à¥à¤¶à¤¾à¤¸à¤¨ à¤¸à¤‚à¤­à¤¾à¤²à¤¨à¤¾ à¤†à¤¨à¤¾ à¤šà¤¾à¤¹à¤¿à¤">Should manage duty posts, reports and discipline</li>
+              </ul>
+            </div>
+            <a class="btn btn-navy" href="#apply"><span data-en="Apply for this Post" data-hi="à¤‡à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply for this Post</span></a>
+          </article>
+
+        </div>
       </div>
-      <div class="footer-right">
-        <a href="tel:+919800000000" class="footer-icon" aria-label="Phone">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
-        <a href="mailto:info@rsenterprises.in" class="footer-icon" aria-label="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
+    </section>
+
+
+    <!-- ================= APPLY NOW ================= -->
+    <section class="section alt apply-section" id="apply">
+      <div class="container">
+
+        <!--
+          ======================================================================
+          HOW TO SET UP THE GOOGLE FORM (read only once, when adding the form)
+          ======================================================================
+          1. Go to forms.google.com and create a new form titled
+             "RS Enterprises - Job Application Form".
+          2. In the form Settings, turn on "Collect email addresses"
+             (optional). In the "Responses" tab, click the green Sheets
+             icon once to create a linked Google Sheet. This Sheet now
+             captures EVERY submission automatically and permanently -
+             this is Google's own native integration, so nothing can
+             break even if your website has any issue.
+          3. Add every field listed in the "Application form fields"
+             section (in the green "For the site owner" box on this page)
+             as a Question in the form, in BOTH English and Hindi.
+             Use Section breaks so the form stays short and readable.
+          4. Get the embed code: click "Send" (top right), then the
+             "</>" Embed icon, copy the <iframe> code.
+          5. Paste that iframe code into the dashed box below, replacing
+             the comment line that says: PASTE GOOGLE FORM EMBED IFRAME CODE HERE
+          6. Replace [PASTE GOOGLE FORM LINK HERE] further below with the
+             form's direct link from Google Forms (Send -> Link).
+
+          PRIVACY NOTE: Aadhaar and PAN numbers are sensitive personal
+          data. Only the owner of the Google account that created the
+          form can see them in the linked Google Sheet. Keep that Google
+          account secure and never share the Sheet's access with anyone.
+          ======================================================================
+        -->
+
+        <div class="section-head">
+          <h2 data-en="Apply Now" data-hi="à¤…à¤­à¥€ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply Now</h2>
+          <!-- [ADD DETAILS] - replace the office visiting hours with the real ones -->
+          <p data-en="We are hiring guards, gunmen, housekeeping staff and supervisors." data-hi="à¤¹à¤® à¤—à¤¾à¤°à¥à¤¡, à¤—à¤¨à¤®à¥ˆà¤¨, à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— à¤¸à¥à¤Ÿà¤¾à¤« à¤”à¤° à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤° à¤•à¥‡ à¤²à¤¿à¤ à¤­à¤°à¥à¤¤à¥€ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚à¥¤">We are hiring guards, gunmen, housekeeping staff and supervisors.</p>
+        </div>
+
+        <!-- Warm, simple instructions on how to apply (in person and online). -->
+        <div class="apply-intro">
+          <p data-en="Applying is easy. You can either visit our office in person, or fill in the online form below. Online applications reach us directly and your details stay private. The application form can also be filled in Hindi." data-hi="à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¤¨à¤¾ à¤¬à¤¹à¥à¤¤ à¤†à¤¸à¤¾à¤¨ à¤¹à¥ˆà¥¤ à¤†à¤ª à¤¹à¤®à¤¾à¤°à¥‡ à¤¦à¤«à¥à¤¤à¤° à¤®à¥‡à¤‚ à¤†à¤•à¤° à¤­à¥€ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤¯à¤¾ à¤¨à¥€à¤šà¥‡ à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤‘à¤¨à¤²à¤¾à¤‡à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤­à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤ à¤‘à¤¨à¤²à¤¾à¤‡à¤¨ à¤†à¤µà¥‡à¤¦à¤¨ à¤¸à¥€à¤§à¥‡ à¤¹à¤® à¤¤à¤• à¤ªà¤¹à¥à¤‚à¤šà¤¤à¤¾ à¤¹à¥ˆ à¤”à¤° à¤†à¤ªà¤•à¥€ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¨à¤¿à¤œà¥€ à¤°à¤¹à¤¤à¥€ à¤¹à¥ˆà¥¤ à¤¯à¤¹ à¤†à¤µà¥‡à¤¦à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤¹à¤¿à¤‚à¤¦à¥€ à¤®à¥‡à¤‚ à¤­à¥€ à¤­à¤°à¤¾ à¤œà¤¾ à¤¸à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤">Applying is easy. You can either visit our office in person, or fill in the online form below. Online applications reach us directly and your details stay private. The application form can also be filled in Hindi.</p>
+        </div>
+
+        <!--
+          HOW TO GET THE EMBED CODE FROM GOOGLE FORMS (short version):
+          1. Open your form in Google Forms.
+          2. Click "Send" (top right).
+          3. Click the second tab, the "</>" Embed icon.
+          4. Set the Width and Height (for example 640 x 900 pixels).
+          5. Copy the <iframe ...> code.
+          6. Paste it below, replacing the comment line that says:
+             PASTE GOOGLE FORM EMBED IFRAME CODE HERE
+          Once pasted, the form will appear exactly here on the page.
+          (The dashed box disappears once the iframe is pasted.)
+        -->
+        <div class="form-embed">
+          <!-- PASTE GOOGLE FORM EMBED IFRAME CODE HERE -->
+          <p class="form-placeholder-note" data-en="The application form will appear here." data-hi="à¤†à¤µà¥‡à¤¦à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤¯à¤¹à¤¾à¤‚ à¤¦à¤¿à¤–à¤¾à¤ˆ à¤¦à¥‡à¤—à¤¾à¥¤">The application form will appear here.</p>
+        </div>
+
+        <!-- Fallback: if the form above does not load, open it in a new window -->
+        <p class="form-fallback" data-en="If the form does not load, tap the button below to open it in a new window:" data-hi="à¤…à¤—à¤° à¤«à¤¼à¥‰à¤°à¥à¤® à¤¨à¤¹à¥€à¤‚ à¤–à¥à¤²à¤¤à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤¨à¥€à¤šà¥‡ à¤¦à¤¿à¤ à¤¬à¤Ÿà¤¨ à¤ªà¤° à¤¦à¤¬à¤¾à¤à¤‚ - à¤«à¤¼à¥‰à¤°à¥à¤® à¤à¤• à¤¨à¤ˆ à¤µà¤¿à¤‚à¤¡à¥‹ à¤®à¥‡à¤‚ à¤–à¥à¤²à¥‡à¤—à¤¾:">If the form does not load, tap the button below to open it in a new window:</p>
+        <div class="form-fallback-link">
+          <a class="btn btn-navy" href="[PASTE GOOGLE FORM LINK HERE]" target="_blank" rel="noopener">
+            <span data-en="Open Application Form" data-hi="à¤†à¤µà¥‡à¤¦à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤–à¥‹à¤²à¥‡à¤‚">Open Application Form</span>
+          </a>
+        </div>
+
+        <!--
+          Collapsible notes for the site owner (you). This box explains how
+          the Google Form is set up so that you can rebuild, edit or check
+          it later. It is only for your information - visitors can ignore it.
+        -->
+        <details class="owner-notes">
+          <summary data-en="For the site owner: how the Google Form was set up" data-hi="à¤¸à¤¾à¤‡à¤Ÿ à¤®à¤¾à¤²à¤¿à¤• à¤•à¥‡ à¤²à¤¿à¤: Google à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¥ˆà¤¸à¥‡ à¤¸à¥‡à¤Ÿ à¤•à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾">For the site owner: how the Google Form was set up</summary>
+
+          <h5 data-en="The exact steps to create the form" data-hi="à¤«à¤¼à¥‰à¤°à¥à¤® à¤¬à¤¨à¤¾à¤¨à¥‡ à¤•à¥‡ à¤¸à¤Ÿà¥€à¤• à¤šà¤°à¤£">The exact steps to create the form</h5>
+          <ol>
+            <li data-en='Go to forms.google.com and create a new form, titled "RS Enterprises - Job Application Form".' data-hi='forms.google.com à¤ªà¤° à¤œà¤¾à¤à¤‚ à¤”à¤° "RS Enterprises - Job Application Form" à¤¨à¤¾à¤® à¤¸à¥‡ à¤¨à¤¯à¤¾ à¤«à¤¼à¥‰à¤°à¥à¤® à¤¬à¤¨à¤¾à¤à¤‚à¥¤'>Go to forms.google.com and create a new form, titled "RS Enterprises - Job Application Form".</li>
+            <li data-en='In the form Settings, turn on "Collect email addresses" (optional). In the Responses tab, click the green Sheets icon once, so a linked Google Sheet is created. Every submission will be saved there automatically and permanently - nothing is lost even if this website ever has a problem.' data-hi="à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¥€ Settings à¤®à¥‡à¤‚ 'Collect email addresses' (à¤µà¥ˆà¤•à¤²à¥à¤ªà¤¿à¤•) à¤šà¤¾à¤²à¥‚ à¤•à¤°à¥‡à¤‚à¥¤ Responses à¤Ÿà¥ˆà¤¬ à¤®à¥‡à¤‚ à¤¹à¤°à¥‡ Sheets à¤†à¤‡à¤•à¤¨ à¤ªà¤° à¤à¤• à¤¬à¤¾à¤° à¤•à¥à¤²à¤¿à¤• à¤•à¤°à¥‡à¤‚, à¤¤à¤¾à¤•à¤¿ à¤à¤• Google Sheet à¤¬à¤¨ à¤œà¤¾à¤à¥¤ à¤¹à¤° à¤†à¤µà¥‡à¤¦à¤¨ à¤…à¤ªà¤¨à¥‡ à¤†à¤ª à¤”à¤° à¤¹à¤®à¥‡à¤¶à¤¾ à¤•à¥‡ à¤²à¤¿à¤ à¤µà¤¹à¤¾à¤‚ à¤¸à¥‡à¤µ à¤¹à¥‹ à¤œà¤¾à¤à¤—à¤¾ - à¤­à¤²à¥‡ à¤¹à¥€ à¤‡à¤¸ à¤µà¥‡à¤¬à¤¸à¤¾à¤‡à¤Ÿ à¤®à¥‡à¤‚ à¤•à¤­à¥€ à¤•à¥‹à¤ˆ à¤¦à¤¿à¤•à¥à¤•à¤¤ à¤† à¤œà¤¾à¤, à¤•à¥à¤› à¤¨à¤¹à¥€à¤‚ à¤–à¥‹à¤à¤—à¤¾à¥¤">In the form Settings, turn on "Collect email addresses" (optional). In the Responses tab, click the green Sheets icon once, so a linked Google Sheet is created. Every submission will be saved there automatically and permanently - nothing is lost even if this website ever has a problem.</li>
+            <li data-en="Add every field listed in the 'Application form fields' box below as a question, in both English and Hindi. Use Section breaks so the form stays short, neat and easy to read." data-hi="à¤¨à¥€à¤šà¥‡ à¤¦à¤¿à¤ 'à¤†à¤µà¥‡à¤¦à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¥‡ à¤¸à¤µà¤¾à¤²' à¤¬à¥‰à¤•à¥à¤¸ à¤•à¤¾ à¤¹à¤° à¤¸à¤µà¤¾à¤² à¤«à¤¼à¥‰à¤°à¥à¤® à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚, à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¤¼à¥€ à¤”à¤° à¤¹à¤¿à¤‚à¤¦à¥€ à¤¦à¥‹à¤¨à¥‹à¤‚ à¤®à¥‡à¤‚à¥¤ à¤«à¤¼à¥‰à¤°à¥à¤® à¤›à¥‹à¤Ÿà¤¾, à¤¸à¤¾à¤« à¤”à¤° à¤†à¤¸à¤¾à¤¨ à¤°à¤–à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ Section breaks à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¥‡à¤‚à¥¤">Add every field listed in the 'Application form fields' box below as a question, in both English and Hindi. Use Section breaks so the form stays short, neat and easy to read.</li>
+            <li data-en='Get the embed code: click "Send" (top right), then the "</>" Embed icon, and copy the iframe code.' data-hi='à¤à¤®à¥à¤¬à¥‡à¤¡ à¤•à¥‹à¤¡ à¤²à¥‡à¤‚: "Send" (à¤Šà¤ªà¤° à¤¦à¤¾à¤ˆà¤‚ à¤“à¤°) à¤ªà¤° à¤•à¥à¤²à¤¿à¤• à¤•à¤°à¥‡à¤‚, à¤«à¤¿à¤° "</>" Embed à¤†à¤‡à¤•à¤¨ à¤ªà¤° à¤•à¥à¤²à¤¿à¤• à¤•à¤°à¥‡à¤‚ à¤”à¤° iframe à¤•à¥‹à¤¡ à¤•à¥‰à¤ªà¥€ à¤•à¤°à¥‡à¤‚à¥¤'>Get the embed code: click "Send" (top right), then the "</>" Embed icon, and copy the iframe code.</li>
+            <li data-en="Paste the iframe code into index.html, in the dashed form box where the owner note says: PASTE GOOGLE FORM EMBED IFRAME CODE HERE" data-hi="iframe à¤•à¥‹à¤¡ à¤•à¥‹ index.html à¤®à¥‡à¤‚, à¤‰à¤¸ à¤¬à¥‰à¤•à¥à¤¸ à¤®à¥‡à¤‚ à¤ªà¥‡à¤¸à¥à¤Ÿ à¤•à¤°à¥‡à¤‚ à¤œà¤¹à¤¾à¤‚ à¤¯à¤¹ à¤²à¤¿à¤–à¤¾ à¤¹à¥ˆ: PASTE GOOGLE FORM EMBED IFRAME CODE HERE">Paste the iframe code into index.html, in the dashed form box where the owner note says: PASTE GOOGLE FORM EMBED IFRAME CODE HERE</li>
+            <li data-en="Replace [PASTE GOOGLE FORM LINK HERE] on this page with the form's direct link (Google Forms -> Send -> Link)." data-hi="à¤‡à¤¸ à¤ªà¥‡à¤œ à¤ªà¤° à¤²à¤¿à¤–à¥‡ [PASTE GOOGLE FORM LINK HERE] à¤•à¥€ à¤œà¤—à¤¹ à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¤¾ à¤¸à¥€à¤§à¤¾ à¤²à¤¿à¤‚à¤• à¤²à¤—à¤¾à¤à¤‚ (Google Forms -> Send -> Link)à¥¤">Replace [PASTE GOOGLE FORM LINK HERE] on this page with the form's direct link (Google Forms -> Send -> Link).</li>
+          </ol>
+
+          <h5 data-en="Application form fields (add each one as a Question, English and Hindi)" data-hi="à¤†à¤µà¥‡à¤¦à¤¨ à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¥‡ à¤¸à¤µà¤¾à¤² (à¤¹à¤° à¤ªà¥à¤°à¤¶à¥à¤¨ à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¤¼à¥€ à¤”à¤° à¤¹à¤¿à¤‚à¤¦à¥€ à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚)">Application form fields (add each one as a Question, English and Hindi)</h5>
+
+          <h6 data-en="Section: Personal Details" data-hi="à¤­à¤¾à¤—: à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤—à¤¤ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€">Section: Personal Details</h6>
+          <ul>
+            <li data-en="Full Name / à¤ªà¥‚à¤°à¤¾ à¤¨à¤¾à¤®" data-hi="Full Name / à¤ªà¥‚à¤°à¤¾ à¤¨à¤¾à¤®">Full Name / à¤ªà¥‚à¤°à¤¾ à¤¨à¤¾à¤®</li>
+            <li data-en="Father's / Husband's Name / à¤ªà¤¿à¤¤à¤¾ à¤¯à¤¾ à¤ªà¤¤à¤¿ à¤•à¤¾ à¤¨à¤¾à¤®" data-hi="Father's / Husband's Name / à¤ªà¤¿à¤¤à¤¾ à¤¯à¤¾ à¤ªà¤¤à¤¿ à¤•à¤¾ à¤¨à¤¾à¤®">Father's / Husband's Name / à¤ªà¤¿à¤¤à¤¾ à¤¯à¤¾ à¤ªà¤¤à¤¿ à¤•à¤¾ à¤¨à¤¾à¤®</li>
+            <li data-en="Date of Birth / à¤œà¤¨à¥à¤® à¤¤à¤¿à¤¥à¤¿" data-hi="Date of Birth / à¤œà¤¨à¥à¤® à¤¤à¤¿à¤¥à¤¿">Date of Birth / à¤œà¤¨à¥à¤® à¤¤à¤¿à¤¥à¤¿</li>
+            <li data-en="Age / à¤†à¤¯à¥" data-hi="Age / à¤†à¤¯à¥">Age / à¤†à¤¯à¥</li>
+            <li data-en="Gender (Male / Female / Other) / à¤²à¤¿à¤‚à¤— (à¤ªà¥à¤°à¥à¤· / à¤®à¤¹à¤¿à¤²à¤¾ / à¤…à¤¨à¥à¤¯)" data-hi="Gender (Male / Female / Other) / à¤²à¤¿à¤‚à¤— (à¤ªà¥à¤°à¥à¤· / à¤®à¤¹à¤¿à¤²à¤¾ / à¤…à¤¨à¥à¤¯)">Gender (Male / Female / Other) / à¤²à¤¿à¤‚à¤— (à¤ªà¥à¤°à¥à¤· / à¤®à¤¹à¤¿à¤²à¤¾ / à¤…à¤¨à¥à¤¯)</li>
+            <li data-en="Height (in cm or ft-in) / à¤Šà¤‚à¤šà¤¾à¤ˆ (à¤¸à¥‡à¤®à¥€ à¤¯à¤¾ à¤«à¥à¤Ÿ-à¤‡à¤‚à¤š à¤®à¥‡à¤‚)" data-hi="Height (in cm or ft-in) / à¤Šà¤‚à¤šà¤¾à¤ˆ (à¤¸à¥‡à¤®à¥€ à¤¯à¤¾ à¤«à¥à¤Ÿ-à¤‡à¤‚à¤š à¤®à¥‡à¤‚)">Height (in cm or ft-in) / à¤Šà¤‚à¤šà¤¾à¤ˆ (à¤¸à¥‡à¤®à¥€ à¤¯à¤¾ à¤«à¥à¤Ÿ-à¤‡à¤‚à¤š à¤®à¥‡à¤‚)</li>
+            <li data-en="Weight (kg) / à¤µà¤œà¤¼à¤¨ (à¤•à¤¿à¤²à¥‹ à¤®à¥‡à¤‚)" data-hi="Weight (kg) / à¤µà¤œà¤¼à¤¨ (à¤•à¤¿à¤²à¥‹ à¤®à¥‡à¤‚)">Weight (kg) / à¤µà¤œà¤¼à¤¨ (à¤•à¤¿à¤²à¥‹ à¤®à¥‡à¤‚)</li>
+            <li data-en="Blood Group / à¤¬à¥à¤²à¤¡ à¤—à¥à¤°à¥à¤ª" data-hi="Blood Group / à¤¬à¥à¤²à¤¡ à¤—à¥à¤°à¥à¤ª">Blood Group / à¤¬à¥à¤²à¤¡ à¤—à¥à¤°à¥à¤ª</li>
+            <li data-en="Marital Status / à¤µà¥ˆà¤µà¤¾à¤¹à¤¿à¤• à¤¸à¥à¤¥à¤¿à¤¤à¤¿" data-hi="Marital Status / à¤µà¥ˆà¤µà¤¾à¤¹à¤¿à¤• à¤¸à¥à¤¥à¤¿à¤¤à¤¿">Marital Status / à¤µà¥ˆà¤µà¤¾à¤¹à¤¿à¤• à¤¸à¥à¤¥à¤¿à¤¤à¤¿</li>
+          </ul>
+
+          <h6 data-en="Section: Contact Details" data-hi="à¤­à¤¾à¤—: à¤¸à¤‚à¤ªà¤°à¥à¤• à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€">Section: Contact Details</h6>
+          <ul>
+            <li data-en="Mobile Number / à¤®à¥‹à¤¬à¤¾à¤‡à¤² à¤¨à¤‚à¤¬à¤°" data-hi="Mobile Number / à¤®à¥‹à¤¬à¤¾à¤‡à¤² à¤¨à¤‚à¤¬à¤°">Mobile Number / à¤®à¥‹à¤¬à¤¾à¤‡à¤² à¤¨à¤‚à¤¬à¤°</li>
+            <li data-en="Alternate / WhatsApp Number / à¤¦à¥‚à¤¸à¤°à¤¾ / à¤µà¥à¤¹à¤¾à¤Ÿà¥à¤¸à¤à¤ª à¤¨à¤‚à¤¬à¤°" data-hi="Alternate / WhatsApp Number / à¤¦à¥‚à¤¸à¤°à¤¾ / à¤µà¥à¤¹à¤¾à¤Ÿà¥à¤¸à¤à¤ª à¤¨à¤‚à¤¬à¤°">Alternate / WhatsApp Number / à¤¦à¥‚à¤¸à¤°à¤¾ / à¤µà¥à¤¹à¤¾à¤Ÿà¥à¤¸à¤à¤ª à¤¨à¤‚à¤¬à¤°</li>
+            <li data-en="Current Address / à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤ªà¤¤à¤¾" data-hi="Current Address / à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤ªà¤¤à¤¾">Current Address / à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤ªà¤¤à¤¾</li>
+            <li data-en="Permanent Address / à¤¸à¥à¤¥à¤¾à¤¯à¥€ à¤ªà¤¤à¤¾" data-hi="Permanent Address / à¤¸à¥à¤¥à¤¾à¤¯à¥€ à¤ªà¤¤à¤¾">Permanent Address / à¤¸à¥à¤¥à¤¾à¤¯à¥€ à¤ªà¤¤à¤¾</li>
+            <li data-en="Village / City &amp; District / à¤—à¤¾à¤‚à¤µ / à¤¶à¤¹à¤° à¤”à¤° à¤œà¤¿à¤²à¤¾" data-hi="Village / City &amp; District / à¤—à¤¾à¤‚à¤µ / à¤¶à¤¹à¤° à¤”à¤° à¤œà¤¿à¤²à¤¾">Village / City &amp; District / à¤—à¤¾à¤‚à¤µ / à¤¶à¤¹à¤° à¤”à¤° à¤œà¤¿à¤²à¤¾</li>
+            <li data-en="State / à¤°à¤¾à¤œà¥à¤¯" data-hi="State / à¤°à¤¾à¤œà¥à¤¯">State / à¤°à¤¾à¤œà¥à¤¯</li>
+            <li data-en="PIN Code / à¤ªà¤¿à¤¨ à¤•à¥‹à¤¡" data-hi="PIN Code / à¤ªà¤¿à¤¨ à¤•à¥‹à¤¡">PIN Code / à¤ªà¤¿à¤¨ à¤•à¥‹à¤¡</li>
+          </ul>
+
+          <h6 data-en="Section: Job Details" data-hi="à¤­à¤¾à¤—: à¤¨à¥Œà¤•à¤°à¥€ à¤•à¥€ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€">Section: Job Details</h6>
+          <ul>
+            <li data-en="Post Applying For (dropdown: Guard / Gunman / Housekeeping / Supervisor) / à¤•à¤¿à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚ (à¤µà¤¿à¤•à¤²à¥à¤ª: à¤—à¤¾à¤°à¥à¤¡ / à¤—à¤¨à¤®à¥ˆà¤¨ / à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— / à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°)" data-hi="Post Applying For (dropdown: Guard / Gunman / Housekeeping / Supervisor) / à¤•à¤¿à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚ (à¤µà¤¿à¤•à¤²à¥à¤ª: à¤—à¤¾à¤°à¥à¤¡ / à¤—à¤¨à¤®à¥ˆà¤¨ / à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— / à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°)">Post Applying For (dropdown: Guard / Gunman / Housekeeping / Supervisor) / à¤•à¤¿à¤¸ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚ (à¤µà¤¿à¤•à¤²à¥à¤ª: à¤—à¤¾à¤°à¥à¤¡ / à¤—à¤¨à¤®à¥ˆà¤¨ / à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— / à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°)</li>
+            <li data-en="Total Work Experience (in years) / à¤•à¥à¤² à¤•à¤¾à¤°à¥à¤¯ à¤…à¤¨à¥à¤­à¤µ (à¤¸à¤¾à¤²à¥‹à¤‚ à¤®à¥‡à¤‚)" data-hi="Total Work Experience (in years) / à¤•à¥à¤² à¤•à¤¾à¤°à¥à¤¯ à¤…à¤¨à¥à¤­à¤µ (à¤¸à¤¾à¤²à¥‹à¤‚ à¤®à¥‡à¤‚)">Total Work Experience (in years) / à¤•à¥à¤² à¤•à¤¾à¤°à¥à¤¯ à¤…à¤¨à¥à¤­à¤µ (à¤¸à¤¾à¤²à¥‹à¤‚ à¤®à¥‡à¤‚)</li>
+            <li data-en="Previous Employer(s) / à¤ªà¤¿à¤›à¤²à¥‡ à¤¨à¤¿à¤¯à¥‹à¤•à¥à¤¤à¤¾ à¤•à¤¾ à¤¨à¤¾à¤®" data-hi="Previous Employer(s) / à¤ªà¤¿à¤›à¤²à¥‡ à¤¨à¤¿à¤¯à¥‹à¤•à¥à¤¤à¤¾ à¤•à¤¾ à¤¨à¤¾à¤®">Previous Employer(s) / à¤ªà¤¿à¤›à¤²à¥‡ à¤¨à¤¿à¤¯à¥‹à¤•à¥à¤¤à¤¾ à¤•à¤¾ à¤¨à¤¾à¤®</li>
+            <li data-en="Educational Qualification / à¤¶à¥ˆà¤•à¥à¤·à¤£à¤¿à¤• à¤¯à¥‹à¤—à¥à¤¯à¤¤à¤¾" data-hi="Educational Qualification / à¤¶à¥ˆà¤•à¥à¤·à¤£à¤¿à¤• à¤¯à¥‹à¤—à¥à¤¯à¤¤à¤¾">Educational Qualification / à¤¶à¥ˆà¤•à¥à¤·à¤£à¤¿à¤• à¤¯à¥‹à¤—à¥à¤¯à¤¤à¤¾</li>
+            <li data-en="Do you have a Gun License? (only for the Gunman post) / à¤•à¥à¤¯à¤¾ à¤†à¤ªà¤•à¥‡ à¤ªà¤¾à¤¸ à¤¬à¤‚à¤¦à¥‚à¤• à¤•à¤¾ à¤²à¤¾à¤‡à¤¸à¥‡à¤‚à¤¸ à¤¹à¥ˆ? (à¤•à¥‡à¤µà¤² à¤—à¤¨à¤®à¥ˆà¤¨ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤)" data-hi="Do you have a Gun License? (only for the Gunman post) / à¤•à¥à¤¯à¤¾ à¤†à¤ªà¤•à¥‡ à¤ªà¤¾à¤¸ à¤¬à¤‚à¤¦à¥‚à¤• à¤•à¤¾ à¤²à¤¾à¤‡à¤¸à¥‡à¤‚à¤¸ à¤¹à¥ˆ? (à¤•à¥‡à¤µà¤² à¤—à¤¨à¤®à¥ˆà¤¨ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤)">Do you have a Gun License? (only for the Gunman post) / à¤•à¥à¤¯à¤¾ à¤†à¤ªà¤•à¥‡ à¤ªà¤¾à¤¸ à¤¬à¤‚à¤¦à¥‚à¤• à¤•à¤¾ à¤²à¤¾à¤‡à¤¸à¥‡à¤‚à¤¸ à¤¹à¥ˆ? (à¤•à¥‡à¤µà¤² à¤—à¤¨à¤®à¥ˆà¤¨ à¤ªà¤¦ à¤•à¥‡ à¤²à¤¿à¤)</li>
+            <li data-en="Do you have a PSARA / Security Training Certificate? / à¤•à¥à¤¯à¤¾ à¤†à¤ªà¤•à¥‡ à¤ªà¤¾à¤¸ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤£ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤ªà¤¤à¥à¤° à¤¹à¥ˆ?" data-hi="Do you have a PSARA / Security Training Certificate? / à¤•à¥à¤¯à¤¾ à¤†à¤ªà¤•à¥‡ à¤ªà¤¾à¤¸ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤£ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤ªà¤¤à¥à¤° à¤¹à¥ˆ?">Do you have a PSARA / Security Training Certificate? / à¤•à¥à¤¯à¤¾ à¤†à¤ªà¤•à¥‡ à¤ªà¤¾à¤¸ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤£ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤ªà¤¤à¥à¤° à¤¹à¥ˆ?</li>
+            <li data-en="Preferred Shift: Day / Night / Both / à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾ à¤¶à¤¿à¤«à¥à¤Ÿ: à¤¦à¤¿à¤¨ / à¤°à¤¾à¤¤ / à¤¦à¥‹à¤¨à¥‹à¤‚" data-hi="Preferred Shift: Day / Night / Both / à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾ à¤¶à¤¿à¤«à¥à¤Ÿ: à¤¦à¤¿à¤¨ / à¤°à¤¾à¤¤ / à¤¦à¥‹à¤¨à¥‹à¤‚">Preferred Shift: Day / Night / Both / à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾ à¤¶à¤¿à¤«à¥à¤Ÿ: à¤¦à¤¿à¤¨ / à¤°à¤¾à¤¤ / à¤¦à¥‹à¤¨à¥‹à¤‚</li>
+            <li data-en="Preferred Location / à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾ à¤¸à¥à¤¥à¤¾à¤¨" data-hi="Preferred Location / à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾ à¤¸à¥à¤¥à¤¾à¤¨">Preferred Location / à¤ªà¤¸à¤‚à¤¦à¥€à¤¦à¤¾ à¤¸à¥à¤¥à¤¾à¤¨</li>
+          </ul>
+
+          <h6 data-en="Section: Identity Documents" data-hi="à¤­à¤¾à¤—: à¤ªà¤¹à¤šà¤¾à¤¨ à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼">Section: Identity Documents</h6>
+          <ul>
+            <li data-en="Aadhaar Card Number / à¤†à¤§à¤¾à¤° à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤‚à¤¬à¤°" data-hi="Aadhaar Card Number / à¤†à¤§à¤¾à¤° à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤‚à¤¬à¤°">Aadhaar Card Number / à¤†à¤§à¤¾à¤° à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤‚à¤¬à¤°</li>
+            <li data-en="Upload Aadhaar Card (Front &amp; Back) - use Google Forms' native 'File upload' question type / à¤†à¤§à¤¾à¤° à¤•à¤¾à¤°à¥à¤¡ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - 'à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡' à¤µà¤¾à¤²à¥‡ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¥‡à¤‚" data-hi="Upload Aadhaar Card (Front &amp; Back) - use Google Forms' native 'File upload' question type / à¤†à¤§à¤¾à¤° à¤•à¤¾à¤°à¥à¤¡ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - 'à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡' à¤µà¤¾à¤²à¥‡ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¥‡à¤‚">Upload Aadhaar Card (Front &amp; Back) - use Google Forms' native 'File upload' question type / à¤†à¤§à¤¾à¤° à¤•à¤¾à¤°à¥à¤¡ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - 'à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡' à¤µà¤¾à¤²à¥‡ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¥‡à¤‚</li>
+            <li data-en="PAN Card Number / à¤ªà¥ˆà¤¨ à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤‚à¤¬à¤°" data-hi="PAN Card Number / à¤ªà¥ˆà¤¨ à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤‚à¤¬à¤°">PAN Card Number / à¤ªà¥ˆà¤¨ à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤‚à¤¬à¤°</li>
+            <li data-en="Upload PAN Card - File upload question type / à¤ªà¥ˆà¤¨ à¤•à¤¾à¤°à¥à¤¡ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡ à¤ªà¥à¤°à¤¶à¥à¤¨" data-hi="Upload PAN Card - File upload question type / à¤ªà¥ˆà¤¨ à¤•à¤¾à¤°à¥à¤¡ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡ à¤ªà¥à¤°à¤¶à¥à¤¨">Upload PAN Card - File upload question type / à¤ªà¥ˆà¤¨ à¤•à¤¾à¤°à¥à¤¡ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡ à¤ªà¥à¤°à¤¶à¥à¤¨</li>
+            <li data-en="Upload Recent Passport-size Photo - File upload question type / à¤¹à¤¾à¤² à¤•à¥€ à¤ªà¤¾à¤¸à¤ªà¥‹à¤°à¥à¤Ÿ à¤¸à¤¾à¤‡à¤œà¤¼ à¤«à¥‹à¤Ÿà¥‹ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡ à¤ªà¥à¤°à¤¶à¥à¤¨" data-hi="Upload Recent Passport-size Photo - File upload question type / à¤¹à¤¾à¤² à¤•à¥€ à¤ªà¤¾à¤¸à¤ªà¥‹à¤°à¥à¤Ÿ à¤¸à¤¾à¤‡à¤œà¤¼ à¤«à¥‹à¤Ÿà¥‹ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡ à¤ªà¥à¤°à¤¶à¥à¤¨">Upload Recent Passport-size Photo - File upload question type / à¤¹à¤¾à¤² à¤•à¥€ à¤ªà¤¾à¤¸à¤ªà¥‹à¤°à¥à¤Ÿ à¤¸à¤¾à¤‡à¤œà¤¼ à¤«à¥‹à¤Ÿà¥‹ à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚ - à¤«à¤¼à¤¾à¤‡à¤² à¤…à¤ªà¤²à¥‹à¤¡ à¤ªà¥à¤°à¤¶à¥à¤¨</li>
+            <li data-en="Upload Police Verification Certificate, if available / à¤ªà¥à¤²à¤¿à¤¸ à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¨ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤ªà¤¤à¥à¤° à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚, à¤¯à¤¦à¤¿ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¹à¥‹" data-hi="Upload Police Verification Certificate, if available / à¤ªà¥à¤²à¤¿à¤¸ à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¨ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤ªà¤¤à¥à¤° à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚, à¤¯à¤¦à¤¿ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¹à¥‹">Upload Police Verification Certificate, if available / à¤ªà¥à¤²à¤¿à¤¸ à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¨ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤ªà¤¤à¥à¤° à¤…à¤ªà¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚, à¤¯à¤¦à¤¿ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¹à¥‹</li>
+          </ul>
+
+          <h6 data-en="Section: Bank Details (for Salary)" data-hi="à¤­à¤¾à¤—: à¤¬à¥ˆà¤‚à¤• à¤µà¤¿à¤µà¤°à¤£ (à¤µà¥‡à¤¤à¤¨ à¤•à¥‡ à¤²à¤¿à¤)">Section: Bank Details (for Salary)</h6>
+          <ul>
+            <li data-en="Bank Account Number / à¤¬à¥ˆà¤‚à¤• à¤–à¤¾à¤¤à¤¾ à¤¸à¤‚à¤–à¥à¤¯à¤¾" data-hi="Bank Account Number / à¤¬à¥ˆà¤‚à¤• à¤–à¤¾à¤¤à¤¾ à¤¸à¤‚à¤–à¥à¤¯à¤¾">Bank Account Number / à¤¬à¥ˆà¤‚à¤• à¤–à¤¾à¤¤à¤¾ à¤¸à¤‚à¤–à¥à¤¯à¤¾</li>
+            <li data-en="IFSC Code / à¤†à¤ˆà¤à¤«à¤à¤¸à¤¸à¥€ à¤•à¥‹à¤¡" data-hi="IFSC Code / à¤†à¤ˆà¤à¤«à¤à¤¸à¤¸à¥€ à¤•à¥‹à¤¡">IFSC Code / à¤†à¤ˆà¤à¤«à¤à¤¸à¤¸à¥€ à¤•à¥‹à¤¡</li>
+            <li data-en="Bank Name &amp; Branch / à¤¬à¥ˆà¤‚à¤• à¤•à¤¾ à¤¨à¤¾à¤® à¤”à¤° à¤¶à¤¾à¤–à¤¾" data-hi="Bank Name &amp; Branch / à¤¬à¥ˆà¤‚à¤• à¤•à¤¾ à¤¨à¤¾à¤® à¤”à¤° à¤¶à¤¾à¤–à¤¾">Bank Name &amp; Branch / à¤¬à¥ˆà¤‚à¤• à¤•à¤¾ à¤¨à¤¾à¤® à¤”à¤° à¤¶à¤¾à¤–à¤¾</li>
+          </ul>
+
+          <h6 data-en="Section: Declaration" data-hi="à¤­à¤¾à¤—: à¤˜à¥‹à¤·à¤£à¤¾">Section: Declaration</h6>
+          <ul>
+            <li data-en="A single required checkbox: 'I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application.' / 'à¤®à¥ˆà¤‚ à¤ªà¥à¤·à¥à¤Ÿà¤¿ à¤•à¤°à¤¤à¤¾/à¤•à¤°à¤¤à¥€ à¤¹à¥‚à¤‚ à¤•à¤¿ à¤‰à¤ªà¤°à¥‹à¤•à¥à¤¤ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¸à¤¹à¥€ à¤¹à¥ˆ, à¤”à¤° à¤®à¥ˆà¤‚ à¤¸à¤¹à¤®à¤¤ à¤¹à¥‚à¤‚ à¤•à¤¿ RS Enterprises à¤‡à¤¸ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤®à¥‡à¤°à¥‡ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¥‹ à¤ªà¥à¤°à¥‹à¤¸à¥‡à¤¸ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤'" data-hi="A single required checkbox: 'I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application.' / 'à¤®à¥ˆà¤‚ à¤ªà¥à¤·à¥à¤Ÿà¤¿ à¤•à¤°à¤¤à¤¾/à¤•à¤°à¤¤à¥€ à¤¹à¥‚à¤‚ à¤•à¤¿ à¤‰à¤ªà¤°à¥‹à¤•à¥à¤¤ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¸à¤¹à¥€ à¤¹à¥ˆ, à¤”à¤° à¤®à¥ˆà¤‚ à¤¸à¤¹à¤®à¤¤ à¤¹à¥‚à¤‚ à¤•à¤¿ RS Enterprises à¤‡à¤¸ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤®à¥‡à¤°à¥‡ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¥‹ à¤ªà¥à¤°à¥‹à¤¸à¥‡à¤¸ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤'">A single required checkbox: 'I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application.' / 'à¤®à¥ˆà¤‚ à¤ªà¥à¤·à¥à¤Ÿà¤¿ à¤•à¤°à¤¤à¤¾/à¤•à¤°à¤¤à¥€ à¤¹à¥‚à¤‚ à¤•à¤¿ à¤‰à¤ªà¤°à¥‹à¤•à¥à¤¤ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¸à¤¹à¥€ à¤¹à¥ˆ, à¤”à¤° à¤®à¥ˆà¤‚ à¤¸à¤¹à¤®à¤¤ à¤¹à¥‚à¤‚ à¤•à¤¿ RS Enterprises à¤‡à¤¸ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤®à¥‡à¤°à¥‡ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¥‹ à¤ªà¥à¤°à¥‹à¤¸à¥‡à¤¸ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤° à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆà¥¤'</li>
+          </ul>
+
+          <!-- Privacy reminder about Aadhaar / PAN data -->
+          <h5 data-en="A note about privacy" data-hi="à¤—à¥‹à¤ªà¤¨à¥€à¤¯à¤¤à¤¾ à¤•à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚ à¤à¤• à¤¬à¤¾à¤¤">A note about privacy</h5>
+          <p data-en="Aadhaar and PAN numbers are sensitive personal data. Only the form owner's linked Google Sheet (private to the Google account that owns the form) can see this data - keep that Google account secure and never share the Sheet with anyone." data-hi="à¤†à¤§à¤¾à¤° à¤”à¤° à¤ªà¥ˆà¤¨ à¤¨à¤‚à¤¬à¤° à¤¸à¤‚à¤µà¥‡à¤¦à¤¨à¤¶à¥€à¤² à¤¨à¤¿à¤œà¥€ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¹à¥ˆà¤‚à¥¤ à¤•à¥‡à¤µà¤² à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¥‡ à¤®à¤¾à¤²à¤¿à¤• à¤•à¥€ à¤œà¥à¤¡à¤¼à¥€ à¤¹à¥à¤ˆ Google Sheet (à¤œà¥‹ à¤«à¤¼à¥‰à¤°à¥à¤® à¤•à¥‡ à¤®à¤¾à¤²à¤¿à¤• à¤•à¥‡ à¤…à¤•à¤¾à¤‰à¤‚à¤Ÿ à¤®à¥‡à¤‚ à¤¹à¥€ à¤¨à¤¿à¤œà¥€ à¤°à¤¹à¤¤à¥€ à¤¹à¥ˆ) à¤¹à¥€ à¤¯à¤¹ à¤œà¤¾à¤¨à¤•à¤¾à¤°à¥€ à¤¦à¥‡à¤– à¤¸à¤•à¤¤à¥€ à¤¹à¥ˆ - à¤‰à¤¸ Google à¤…à¤•à¤¾à¤‰à¤‚à¤Ÿ à¤•à¥‹ à¤¸à¥à¤°à¤•à¥à¤·à¤¿à¤¤ à¤°à¤–à¥‡à¤‚ à¤”à¤° Sheet à¤•à¤­à¥€ à¤•à¤¿à¤¸à¥€ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤¸à¤¾à¤à¤¾ à¤¨ à¤•à¤°à¥‡à¤‚à¥¤">Aadhaar and PAN numbers are sensitive personal data. Only the form owner's linked Google Sheet (private to the Google account that owns the form) can see this data - keep that Google account secure and never share the Sheet with anyone.</p>
+        </details>
+
       </div>
+    </section>
+
+
+    <!-- ================= CONTACT US ================= -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="section-head">
+          <h2 data-en="Contact Us" data-hi="à¤¸à¤‚à¤ªà¤°à¥à¤• à¤•à¤°à¥‡à¤‚">Contact Us</h2>
+          <p data-en="Talk to us in the language you feel comfortable in - Hindi or English, both are welcome." data-hi="à¤…à¤ªà¤¨à¥€ à¤­à¤¾à¤·à¤¾ à¤®à¥‡à¤‚ à¤¹à¤®à¤¸à¥‡ à¤¬à¤¾à¤¤ à¤•à¤°à¥‡à¤‚ - à¤¹à¤¿à¤‚à¤¦à¥€ à¤¯à¤¾ à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¤¼à¥€, à¤¦à¥‹à¤¨à¥‹à¤‚ à¤¸à¥à¤µà¤¾à¤—à¤¤ à¤¹à¥ˆà¥¤">Talk to us in the language you feel comfortable in - Hindi or English, both are welcome.</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Left side: contact details (all are placeholders - replace them) -->
+          <div class="contact-info">
+
+            <!-- Address -->
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <strong data-en="Office Address" data-hi="à¤¦à¤«à¥à¤¤à¤° à¤•à¤¾ à¤ªà¤¤à¤¾">Office Address</strong>
+                <p data-en="[Street / Building], New Delhi, India - [PIN Code]" data-hi="[à¤—à¤²à¥€ / à¤­à¤µà¤¨], à¤¨à¤ˆ à¤¦à¤¿à¤²à¥à¤²à¥€, à¤­à¤¾à¤°à¤¤ - [à¤ªà¤¿à¤¨ à¤•à¥‹à¤¡]">[Street / Building], New Delhi, India - [PIN Code]</p>
+              </div>
+            </div>
+
+            <!-- Phone (tapping this calls the number) -->
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+              <div>
+                <strong data-en="Phone" data-hi="à¤«à¤¼à¥‹à¤¨">Phone</strong>
+                <p><a href="tel:+91XXXXXXXXXX">+91 9XXXX XXXXX</a></p>
+              </div>
+            </div>
+
+            <!-- WhatsApp (tapping this opens a WhatsApp chat) -->
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.1-1.4A10 10 0 1 0 12 2Zm4.9 14.1c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.5-.1l-.2-.1c-1.3-.5-2.6-1.3-3.7-2.5-1-1.2-1.7-2.4-1.9-2.6-.2-.2-.5-.7-.5-1.4 0-.6.3-1.1.5-1.3.2-.2.5-.3.7-.3h.5c.2 0 .5 0 .7.5l.9 2.1c0 .2.1.3 0 .5l-.3.5c-.1.2-.3.4-.1.6.6.9 1.4 1.7 2.3 2.3.3.2.5.2.7 0l.6-.6c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.5-.1 1Z"/></svg>
+              <div>
+                <strong data-en="WhatsApp" data-hi="à¤µà¥à¤¹à¤¾à¤Ÿà¥à¤¸à¤à¤ª">WhatsApp</strong>
+                <p><a href="https://wa.me/919XXXXXXXXX" target="_blank" rel="noopener">+91 9XXXX XXXXX</a></p>
+              </div>
+            </div>
+
+            <!-- Email (tapping this opens your mail app) -->
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>
+              <div>
+                <strong data-en="Email" data-hi="à¤ˆà¤®à¥‡à¤²">Email</strong>
+                <p><a href="mailto:info@rsenterprises.in">info@rsenterprises.in</a></p>
+              </div>
+            </div>
+
+            <!-- Office hours -->
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+              <div>
+                <strong data-en="Office Hours" data-hi="à¤¦à¤«à¥à¤¤à¤° à¤•à¤¾ à¤¸à¤®à¤¯">Office Hours</strong>
+                <p data-en="Monday - Saturday, 10:00 AM - 7:00 PM" data-hi="à¤¸à¥‹à¤®à¤µà¤¾à¤° - à¤¶à¤¨à¤¿à¤µà¤¾à¤°, à¤¸à¥à¤¬à¤¹ 10:00 - à¤¶à¤¾à¤® 7:00">Monday - Saturday, 10:00 AM - 7:00 PM</p>
+              </div>
+            </div>
+
+            <!-- Social links (placeholders - add the real page links) -->
+            <div class="social-row">
+              <!-- [ADD SOCIAL LINKS] - replace href="#" with the real page addresses -->
+              <a class="btn-social" href="#" data-en="Facebook" data-hi="à¤«à¥‡à¤¸à¤¬à¥à¤•" target="_blank" rel="noopener">Facebook</a>
+              <a class="btn-social" href="#" data-en="Instagram" data-hi="à¤‡à¤‚à¤¸à¥à¤Ÿà¤¾à¤—à¥à¤°à¤¾à¤®" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn-social" href="#" data-en="YouTube" data-hi="à¤¯à¥‚à¤Ÿà¥à¤¯à¥‚à¤¬" target="_blank" rel="noopener">YouTube</a>
+            </div>
+
+          </div>
+
+          <!-- Right side: Google Maps (paste your map embed code to replace the placeholder) -->
+          <div class="map-box">
+            <!--
+              GOOGLE MAPS EMBED (how to put a map here):
+              1. Open google.com/maps and search your office address.
+              2. Click "Share" below the address.
+              3. Open the "Embed a map" tab and copy the <iframe> code.
+              4. Delete the <p class="map-placeholder"> line below and
+                 paste the map's <iframe> in its place (inside this box).
+            -->
+            <p class="map-placeholder" data-en="Map will appear here." data-hi="à¤¨à¤•à¥à¤¶à¤¾ à¤¯à¤¹à¤¾à¤‚ à¤¦à¤¿à¤–à¤¾à¤ˆ à¤¦à¥‡à¤—à¤¾à¥¤">Map will appear here.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+
+      <!-- Small brand block -->
+      <div class="footer-brand">
+        <span class="brand-name">RS Enterprises</span>
+        <p data-en="Trusted security and manpower services in India. Trained guards, gunmen, housekeeping staff and supervisors for homes and businesses." data-hi="à¤­à¤¾à¤°à¤¤ à¤®à¥‡à¤‚ à¤­à¤°à¥‹à¤¸à¥‡à¤®à¤‚à¤¦ à¤¸à¥à¤°à¤•à¥à¤·à¤¾ à¤”à¤° à¤®à¥ˆà¤¨à¤ªà¤¾à¤µà¤° à¤¸à¥‡à¤µà¤¾à¤à¤‚à¥¤ à¤˜à¤°à¥‹à¤‚ à¤”à¤° à¤µà¥à¤¯à¤µà¤¸à¤¾à¤¯à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥à¤°à¤¶à¤¿à¤•à¥à¤·à¤¿à¤¤ à¤—à¤¾à¤°à¥à¤¡, à¤—à¤¨à¤®à¥ˆà¤¨, à¤¹à¤¾à¤‰à¤¸à¤•à¥€à¤ªà¤¿à¤‚à¤— à¤¸à¥à¤Ÿà¤¾à¤« à¤”à¤° à¤¸à¥à¤ªà¤°à¤µà¤¾à¤‡à¤œà¤¼à¤°à¥¤">Trusted security and manpower services in India. Trained guards, gunmen, housekeeping staff and supervisors for homes and businesses.</p>
+      </div>
+
+      <!-- Quick menu links -->
+      <div class="footer-col">
+        <h4 data-en="Quick Links" data-hi="à¤¤à¥à¤µà¤°à¤¿à¤¤ à¤²à¤¿à¤‚à¤•">Quick Links</h4>
+        <a href="#home"      data-en="Home"          data-hi="à¤¹à¥‹à¤®">Home</a>
+        <a href="#about"     data-en="About Us"      data-hi="à¤¹à¤®à¤¾à¤°à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚">About Us</a>
+        <a href="#services"  data-en="Our Services"  data-hi="à¤¹à¤®à¤¾à¤°à¥€ à¤¸à¥‡à¤µà¤¾à¤à¤‚">Our Services</a>
+        <a href="#vacancies" data-en="Job Vacancies" data-hi="à¤¨à¥Œà¤•à¤°à¥€ à¤•à¥€ à¤°à¤¿à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤‚">Job Vacancies</a>
+        <a href="#apply"     data-en="Apply Now"     data-hi="à¤…à¤­à¥€ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚">Apply Now</a>
+      </div>
+
+      <!-- Contact summary -->
+      <div class="footer-col">
+        <h4 data-en="Get in Touch" data-hi="à¤¸à¤‚à¤ªà¤°à¥à¤• à¤®à¥‡à¤‚ à¤°à¤¹à¥‡à¤‚">Get in Touch</h4>
+        <a href="tel:+91XXXXXXXXXX">+91 9XXXX XXXXX</a>
+        <a href="https://wa.me/919XXXXXXXXX" target="_blank" rel="noopener" data-en="WhatsApp Us" data-hi="à¤µà¥à¤¹à¤¾à¤Ÿà¥à¤¸à¤à¤ª à¤•à¤°à¥‡à¤‚">WhatsApp Us</a>
+        <a href="mailto:info@rsenterprises.in">info@rsenterprises.in</a>
+        <a href="#contact" data-en="Office Address" data-hi="à¤¦à¤«à¥à¤¤à¤° à¤•à¤¾ à¤ªà¤¤à¤¾">Office Address</a>
+      </div>
+
+    </div>
+
+    <!-- Bottom line: company name + automatic current year -->
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2026</span> RS Enterprises. <span data-en="All rights reserved." data-hi="à¤¸à¤°à¥à¤µà¤¾à¤§à¤¿à¤•à¤¾à¤° à¤¸à¥à¤°à¤•à¥à¤·à¤¿à¤¤à¥¤">All rights reserved.</span></p>
     </div>
   </footer>
 
+
+  <!-- Lenis smooth scrolling library, loaded from the internet.
+       (The page still works normally if this ever fails to load.) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+
+  <!-- Our own small script: language switch, smooth scroll setup, phone menu, year -->
   <script src="js/main.js"></script>
 </body>
 </html>

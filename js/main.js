@@ -1,128 +1,113 @@
-// ===== HERO IMAGE SLIDER =====
-(function initSlider() {
-  const slides = document.querySelectorAll('.slide');
-  const dotsContainer = document.getElementById('sliderDots');
-  if (!slides.length || !dotsContainer) return;
+/* ================================================================
+   RS Enterprises - main.js
+   This file makes the page do its small tricks. It has only 4 jobs:
 
-  let current = 0;
-  let interval;
+   1. Language switch  - swaps ALL text between English and Hindi
+                         instantly, with no page reload.
+   2. Smooth scrolling - uses the Lenis library for a smooth slide
+                         when you tap a menu link.
+   3. Mobile menu      - opens and closes the menu on a phone.
+   4. Footer year      - keeps the copyright year correct automatically.
 
-  // Create dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.classList.add('slider-dot');
-    if (i === 0) dot.classList.add('active');
-    dot.setAttribute('aria-label', `Slide ${i + 1}`);
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(dot);
-  });
+   How the language switch works (simple explanation):
+   - Every piece of text on the page has BOTH versions written on it:
+        data-en="English words"
+        data-hi="हिंदी शब्द"
+   - When you press the "EN | हिंदी" button, this file finds every
+     element with those two attributes and simply swaps the words.
+   - It remembers your choice in the browser (localStorage) so the
+     same language is used next time the page is opened.
+   ================================================================ */
 
-  const dots = dotsContainer.querySelectorAll('.slider-dot');
+(function () {
+  "use strict";
 
-  function goTo(index) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = index;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-    resetInterval();
+  /* ------------------------------------------------------------
+     PART 1 - LANGUAGE SWITCH
+     ------------------------------------------------------------ */
+
+  // Which language to start with. English is the default.
+  var savedLang = localStorage.getItem("rs-lang") || "en";
+
+  function switchLanguage(lang) {
+    var isHindi = lang === "hi";
+
+    // Go through every element that carries both translations...
+    document.querySelectorAll("[data-en][data-hi]").forEach(function (el) {
+      // ...and put in the correct words.
+      el.textContent = isHindi ? el.getAttribute("data-hi") : el.getAttribute("data-en");
+    });
+
+    // Tell search engines which language the page is in now.
+    document.documentElement.setAttribute("lang", isHindi ? "hi" : "en");
+
+    // Save the choice so it is remembered next visit.
+    localStorage.setItem("rs-lang", lang);
   }
 
-  function next() {
-    goTo((current + 1) % slides.length);
+  // Switch to the saved language when the page first opens.
+  switchLanguage(savedLang);
+
+  // Pressing the "EN | हिंदी" button toggles between the two languages.
+  var langToggle = document.getElementById("langToggle");
+  if (langToggle) {
+    langToggle.addEventListener("click", function () {
+      var current = localStorage.getItem("rs-lang") || "en";
+      switchLanguage(current === "en" ? "hi" : "en");
+    });
   }
 
-  function resetInterval() {
-    clearInterval(interval);
-    interval = setInterval(next, 5000);
+  /* ------------------------------------------------------------
+     PART 2 - SMOOTH SCROLLING (Lenis)
+     ------------------------------------------------------------ */
+
+  // Lenis is loaded from the internet with a <script> tag in index.html.
+  // If it loaded, use it; if not, the page still works with normal scrolling.
+  if (window.Lenis) {
+    // How much space to leave above the section for the sticky menu.
+    var header = document.querySelector(".site-header");
+    var offset = header ? header.offsetHeight : 74;
+
+    // autoRaf  = Lenis updates itself automatically (no extra loop needed).
+    // anchors  = tapping any #link (menu, Apply buttons) scrolls smoothly.
+    new Lenis({
+      autoRaf: true,
+      anchors: { offset: offset },
+      allowNestedScroll: true
+    });
   }
 
-  resetInterval();
-})();
+  /* ------------------------------------------------------------
+     PART 3 - MOBILE MENU (hamburger button)
+     ------------------------------------------------------------ */
 
-// ===== NAVBAR SCROLL EFFECT =====
-(function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  if (!navbar) return;
+  var navToggle = document.getElementById("navToggle");
+  var siteHeader = document.getElementById("siteHeader");
 
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
-})();
-
-// ===== MOBILE NAV TOGGLE =====
-(function initMobileNav() {
-  const toggle = document.getElementById('navToggle');
-  const links = document.querySelector('.nav-links');
-  if (!toggle || !links) return;
-
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    links.classList.toggle('open');
-  });
-
-  // Close on link click
-  links.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('open');
-      links.classList.remove('open');
+  if (navToggle && siteHeader) {
+    // Tap the hamburger button to open or close the menu.
+    navToggle.addEventListener("click", function () {
+      var open = siteHeader.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
-  });
-})();
 
-// ===== SCROLL FADE-IN ANIMATION =====
-(function initScrollAnimations() {
-  const elements = document.querySelectorAll('.fade-in');
-  if (!elements.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+    // Close the menu by itself after choosing any link.
+    document.querySelectorAll(".site-nav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        siteHeader.classList.remove("nav-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }
 
-  elements.forEach(el => observer.observe(el));
-})();
+  /* ------------------------------------------------------------
+     PART 4 - FOOTER YEAR
+     ------------------------------------------------------------ */
 
-// ===== ACTIVE NAV LINK ON SCROLL =====
-(function initActiveNav() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-  if (!sections.length || !navLinks.length) return;
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY + 120;
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-      if (scrollY >= top && scrollY < top + height) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  });
-})();
-
-// ===== CONTACT FORM =====
-(function initContactForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('.btn');
-    btn.classList.add('loading');
-
-    // Simulate send (replace with actual endpoint)
-    setTimeout(() => {
-      btn.classList.remove('loading');
-      alert('Thank you! Your message has been sent.');
-      form.reset();
-    }, 1500);
-  });
+  // Puts the current year in the copyright line automatically,
+  // so it never goes out of date.
+  var year = document.getElementById("year");
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 })();
