@@ -17,45 +17,109 @@
      element with those two attributes and simply swaps the words.
    - It remembers your choice in the browser (localStorage) so the
      same language is used next time the page is opened.
+   - If the browser does not allow saving (private mode, security
+     add-ons), the button still works for that visit - nothing breaks.
    ================================================================ */
 
 (function () {
   "use strict";
 
   /* ------------------------------------------------------------
+     SAFE SAVING HELPER
+     Some setups (private windows, security add-ons) do not allow
+     saving. We never want that to break the site, so every save is
+     wrapped in the small safe helpers below.
+     ------------------------------------------------------------ */
+
+  var storage = {
+    get: function (key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch (err) {
+        return null; // saving is blocked - pretend nothing was saved
+      }
+    },
+    set: function (key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch (err) {
+        // saving is blocked - the site just keeps working without it
+      }
+    }
+  };
+
+  /* ------------------------------------------------------------
      PART 1 - LANGUAGE SWITCH
      ------------------------------------------------------------ */
 
-  // Which language to start with. English is the default.
-  var savedLang = localStorage.getItem("rs-lang") || "en";
+  var STORAGE_KEY = "rs-lang"; // where the chosen language is remembered
+  var currentLang = "en";      // English until told otherwise
+
+  // The button that swaps the languages (found once, used many times).
+  var langToggle = document.getElementById("langToggle");
 
   function switchLanguage(lang) {
     var isHindi = lang === "hi";
+    currentLang = isHindi ? "hi" : "en";
 
     // Go through every element that carries both translations...
-    document.querySelectorAll("[data-en][data-hi]").forEach(function (el) {
+    var items = document.querySelectorAll("[data-en][data-hi]");
+    for (var i = 0; i < items.length; i++) {
       // ...and put in the correct words.
-      el.textContent = isHindi ? el.getAttribute("data-hi") : el.getAttribute("data-en");
-    });
+      items[i].textContent = isHindi
+        ? items[i].getAttribute("data-hi")
+        : items[i].getAttribute("data-en");
+    }
 
-    // Tell search engines which language the page is in now.
-    document.documentElement.setAttribute("lang", isHindi ? "hi" : "en");
+    // Tell the browser and search engines which language the page
+    // is written in right now.
+    document.documentElement.setAttribute("lang", currentLang);
 
-    // Save the choice so it is remembered next visit.
-    localStorage.setItem("rs-lang", lang);
+    // Show which language is active on the switch button.
+    if (langToggle) {
+      langToggle.setAttribute("aria-pressed", isHindi ? "true" : "false");
+      langToggle.setAttribute(
+        "aria-label",
+        isHindi
+          ? "Current language: Hindi (press to switch to English)"
+          : "Current language: English (press to switch to Hindi)"
+      );
+    }
   }
 
-  // Switch to the saved language when the page first opens.
-  switchLanguage(savedLang);
+  // Decide which language to open in:
+  //   1. a language saved on an earlier visit, OR
+  //   2. a shared link such as  index.html#lang=hi , OR
+  //   3. English, the safe default.
+  var startLang = storage.get(STORAGE_KEY);
+  if (startLang !== "en" && startLang !== "hi") {
+    var hash = window.location.hash.toLowerCase();
+    if (hash === "#lang=hi" || hash === "#lang=en") {
+      startLang = hash === "#lang=hi" ? "hi" : "en";
+    } else {
+      startLang = "en";
+    }
+  }
 
-  // Pressing the "EN | हिंदी" button toggles between the two languages.
-  var langToggle = document.getElementById("langToggle");
+  // Open the page in the chosen language, and remember the choice.
+  switchLanguage(startLang);
+  storage.set(STORAGE_KEY, startLang);
+
+  // Pressing the "EN | हिंदी" button switches to the other language.
   if (langToggle) {
     langToggle.addEventListener("click", function () {
-      var current = localStorage.getItem("rs-lang") || "en";
-      switchLanguage(current === "en" ? "hi" : "en");
+      switchLanguage(currentLang === "en" ? "hi" : "en");
+      storage.set(STORAGE_KEY, currentLang);
     });
   }
+
+  // Tiny test helpers so the language can also be checked from the
+  // browser developer console while testing. Type in the console:
+  //     switchSiteLanguage("hi")
+  window.switchSiteLanguage = switchLanguage;
+  window.currentSiteLanguage = function () {
+    return currentLang;
+  };
 
   /* ------------------------------------------------------------
      PART 2 - SMOOTH SCROLLING (Lenis)
