@@ -1,6 +1,6 @@
 // ==== RS Enterprises Application Form submission ====
 // Paste your Google Apps Script Web App URL here (see setup steps in the README/setup doc)
-const SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxptpQ_2XVfT7InNUSKK_ZelPiA9CNAZS9_-HR-cR-FNBKnp0T0nNHHqCT6EME98DidDw/exec";
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("rsApplyForm");
