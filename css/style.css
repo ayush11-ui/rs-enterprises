@@ -33,6 +33,7 @@
   --muted: #52667B;     /* softer grey for captions */
   --radius: 16px;       /* how round the corners are (16px looks soft and friendly) */
   --shadow: 0 10px 30px rgba(11, 31, 58, 0.10);
+  --danger: #C0392B;    /* red, used only for form error notes */
   --font: 'Fredoka', 'Segoe UI', Arial, sans-serif; /* the one font used everywhere */
 }
 
@@ -543,46 +544,150 @@ section[id] {
   font-size: 1.2rem;
 }
 
-/* The box where the Google Form is embedded.
-   To put your form here: open index.html, find the comment
-   <!-- PASTE GOOGLE FORM EMBED IFRAME CODE HERE --> and replace the
-   comment lines inside this box with your <iframe> code. */
-.form-embed {
-  margin-top: 2.4rem;
-  border: 2px dashed var(--gold);
-  border-radius: var(--radius);
+/* The online application form. It posts to a Google Apps Script Web App
+   (Code.gs) - full setup steps are in the green owner notes in index.html. */
+.rs-form {
+  margin: 2.4rem auto 0;
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem 1.8rem;
+  padding: 2.4rem 2.2rem;
   background: var(--white);
-  padding: 2rem 1.5rem;
-  min-height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.form-embed iframe {
-  width: 100%;
-  min-height: 700px;
-  border: 0;
-  align-self: stretch;
-}
-.form-placeholder-note {
-  color: var(--muted);
-  font-size: 1.15rem;
-  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-/* The fallback line under the form: "If the form does not load, tap the button..." */
-.form-fallback {
-  margin-top: 1.8rem;
-  text-align: center;
-  color: var(--muted);
-  font-size: 1.1rem;
+/* Section heading inside the form ("Personal Details", "Contact Details"...)
+   Each heading stretches across both columns. */
+.rs-form-section {
+  grid-column: 1 / -1;
+  margin: 0.4rem 0 0;
+  color: var(--navy);
+  font-size: 1.3rem;
+  line-height: 1.4;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.5rem;
 }
-.form-fallback-link {
+
+/* One label + answer pair. Short pairs sit side by side on wide screens. */
+.rs-field {
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
 }
+.rs-field-wide {
+  grid-column: 1 / -1;
+}
+.rs-field > label {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* All answer boxes: roomy (min 48px) so they are easy to tap on a phone */
+.rs-field input,
+.rs-field select,
+.rs-field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.02rem;
+  color: var(--ink);
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  min-height: 48px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.rs-field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+.rs-field input:focus,
+.rs-field select:focus,
+.rs-field textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(233, 163, 25, 0.18);
+}
+
+/* The file upload controls (photo, Aadhaar, PAN, police certificate) */
+.rs-field input[type="file"] {
+  padding: 0.55rem 0.6rem;
+}
+
+/* The declaration checkbox line */
+.rs-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+.rs-checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  flex: none;
+  margin-top: 0.25rem;
+  accent-color: var(--gold);
+}
+
+/* A missing/oversized field gains a red edge + a small red note */
+.rs-field.rs-has-error input,
+.rs-field.rs-has-error select,
+.rs-field.rs-has-error textarea {
+  border-color: var(--danger);
+}
+.rs-field-error {
+  color: var(--danger);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* The submit button (gold, like the other main buttons) */
+.rs-submit-btn {
+  width: 100%;
+  margin-top: 0.4rem;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--gold);
+  border: 0;
+  border-radius: 14px;
+  min-height: 54px;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+.rs-submit-btn:hover {
+  background: var(--gold-dark);
+  color: var(--white);
+}
+.rs-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* The status line under the button ("Sending...", "Thank you!", errors) */
+.rs-form-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--navy);
+  min-height: 1.6rem;
+}
+.rs-form-status[data-state="sending"] { color: var(--muted); }
+.rs-form-status[data-state="success"] { color: #1E7A3C; }
+.rs-form-status[data-state="error"],
+.rs-form-status[data-state="filesize"] { color: var(--danger); }
 
 /* The collapsible "For the site owner" box that explains how the
    Google Form was set up. Keeps the confusion away from job applicants. */
@@ -816,6 +921,12 @@ section[id] {
     padding: 0.4rem 0.75rem;
     font-size: 0.85rem;
   }
+  /* Hide the small in-menu "Apply Now" button on narrow phones - the Apply
+     buttons inside the page are much easier to reach. Keeps the header from
+     overflowing the screen. */
+  .nav-actions .btn-sm {
+    display: none;
+  }
   .header-inner {
     gap: 0.5rem;
     min-height: 78px;
@@ -825,6 +936,14 @@ section[id] {
   }
   .hero-actions .btn {
     width: 100%; /* full-width buttons are much easier to tap on a phone */
+  }
+  .rs-form {
+    grid-template-columns: 1fr; /* one column: every field full width */
+    padding: 1.6rem 1.2rem;
+    gap: 1.1rem;
+  }
+  .rs-field-wide {
+    grid-column: auto;
   }
   .footer-top {
     grid-template-columns: 1fr;

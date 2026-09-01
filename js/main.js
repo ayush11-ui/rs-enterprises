@@ -85,6 +85,12 @@
           : "Current language: English (press to switch to Hindi)"
       );
     }
+
+    // Tell the rest of the page the language just changed, so other
+    // scripts (like the application form's messages) can follow along.
+    document.dispatchEvent(new CustomEvent("rs-langchange", {
+      detail: { lang: currentLang }
+    }));
   }
 
   // Decide which language to open in:

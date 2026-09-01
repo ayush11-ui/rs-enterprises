@@ -30,16 +30,24 @@
        - index.html    -> this file (the whole website)
        - css/style.css -> all colours, fonts and layout
        - js/main.js    -> language switch, smooth scrolling, phone menu
+       - js/form.js    -> application form: validation + sending to Google Sheets
        - favicon.svg   -> the small logo in the browser tab
 
-     TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
+TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
      in this file and type over them. Each text also carries a Hindi copy,
      shown like this:  data-en="English"  data-hi="हिंदी"
 
+     THE APPLICATION FORM on this page posts to a Google Apps Script Web App.
+     To connect your Sheet: deploy Code.gs as a Web App, then paste its URL
+     into js/form.js like this:
+        const SCRIPT_URL = "YOUR WEB APP URL HERE"
+     Full setup steps are in the green "For the site owner" box in the
+     Apply Now section.
+
      PLACEHOLDERS YOU MUST FILL IN LATER (search for these words):
-       [X] years  ,  [ADD DETAILS]  ,  [CITY, STATE]  ,  [PASTE GOOGLE FORM LINK HERE]
+       [X] years  ,  [ADD DETAILS]  ,  [CITY, STATE]
        +91XXXXXXXXXX  ,  919XXXXXXXXX  ,  [yourdomain].com  ,  [Street / Building]
-     ==================================================================== -->
+      ==================================================================== -->
 
 <body>
 
@@ -366,31 +374,30 @@
 
         <!--
           ======================================================================
-          HOW TO SET UP THE GOOGLE FORM (read only once, when adding the form)
+          HOW THE APPLICATION FORM SAVES APPLICATIONS (read once, when connecting)
           ======================================================================
-          1. Go to forms.google.com and create a new form titled
-             "RS Enterprises - Job Application Form".
-          2. In the form Settings, turn on "Collect email addresses"
-             (optional). In the "Responses" tab, click the green Sheets
-             icon once to create a linked Google Sheet. This Sheet now
-             captures EVERY submission automatically and permanently -
-             this is Google's own native integration, so nothing can
-             break even if your website has any issue.
-          3. Add every field listed in the "Application form fields"
-             section (in the green "For the site owner" box on this page)
-             as a Question in the form, in BOTH English and Hindi.
-             Use Section breaks so the form stays short and readable.
-          4. Get the embed code: click "Send" (top right), then the
-             "</>" Embed icon, copy the <iframe> code.
-          5. Paste that iframe code into the dashed box below, replacing
-             the comment line that says: PASTE GOOGLE FORM EMBED IFRAME CODE HERE
-          6. Replace [PASTE GOOGLE FORM LINK HERE] further below with the
-             form's direct link from Google Forms (Send -> Link).
+          The form in this section is a normal HTML form (no iframe). When a
+          visitor presses Submit Application, js/form.js sends the answers to
+          a Google Apps Script Web App (the file Code.gs). That script:
+            1. appends one row to a private Google Sheet, and
+            2. stores the uploaded files (photo, Aadhaar, PAN, police
+               verification) in a private Drive folder.
+
+          To connect your own Google account (one-time setup):
+            1. Go to script.google.com and create a new project.
+            2. Paste Code.gs into the editor.
+            3. Replace SHEET_ID and FOLDER_ID at the top of Code.gs with
+               your own private Sheet and Drive folder IDs.
+            4. Deploy -> New deployment -> Type: Web app
+               (Execute as: Me, Who has access: Anyone).
+            5. Copy the Web App URL into js/form.js, in the quotes of the
+               line: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"
+            Full steps are repeated in the green "For the site owner" box below.
 
           PRIVACY NOTE: Aadhaar and PAN numbers are sensitive personal
-          data. Only the owner of the Google account that created the
-          form can see them in the linked Google Sheet. Keep that Google
-          account secure and never share the Sheet's access with anyone.
+          data. They go only into YOUR private Google Sheet and Drive
+          folder. Keep that Google account secure and never share the
+          Sheet or folder with anyone.
           ======================================================================
         -->
 
@@ -406,49 +413,278 @@
         </div>
 
         <!--
-          HOW TO GET THE EMBED CODE FROM GOOGLE FORMS (short version):
-          1. Open your form in Google Forms.
-          2. Click "Send" (top right).
-          3. Click the second tab, the "</>" Embed icon.
-          4. Set the Width and Height (for example 640 x 900 pixels).
-          5. Copy the <iframe ...> code.
-          6. Paste it below, replacing the comment line that says:
-             PASTE GOOGLE FORM EMBED IFRAME CODE HERE
-          Once pasted, the form will appear exactly here on the page.
-          (The dashed box disappears once the iframe is pasted.)
-        -->
-        <div class="form-embed">
-          <!-- PASTE GOOGLE FORM EMBED IFRAME CODE HERE -->
-          <p class="form-placeholder-note" data-en="The application form will appear here." data-hi="आवेदन फ़ॉर्म यहां दिखाई देगा।">The application form will appear here.</p>
-        </div>
+          HOW THE FORM IS SAVED (no setup needed to test the look):
+          When someone taps "Submit Application", js/form.js sends the
+          filled form to a Google Apps Script "Web App" (the Code.gs
+          script). That script saves every answer into a private Google
+          Sheet and drops the uploaded files into a private Drive folder.
 
-        <!-- Fallback: if the form above does not load, open it in a new window -->
-        <p class="form-fallback" data-en="If the form does not load, tap the button below to open it in a new window:" data-hi="अगर फ़ॉर्म नहीं खुलता है, तो नीचे दिए बटन पर दबाएं - फ़ॉर्म एक नई विंडो में खुलेगा:">If the form does not load, tap the button below to open it in a new window:</p>
-        <div class="form-fallback-link">
-          <a class="btn btn-navy" href="[PASTE GOOGLE FORM LINK HERE]" target="_blank" rel="noopener">
-            <span data-en="Open Application Form" data-hi="आवेदन फ़ॉर्म खोलें">Open Application Form</span>
-          </a>
-        </div>
+          TO CONNECT YOUR OWN SHEET (one-time setup, ~5 minutes):
+          1. Go to script.google.com and create a new project.
+          2. Paste the contents of Code.gs into the editor.
+          3. At the top of Code.gs, replace SHEET_ID and FOLDER_ID with
+             the IDs of your own private Google Sheet and Drive folder.
+          4. Click Deploy -> New deployment -> Type: Web app.
+               - Execute as: Me
+               - Who has access: Anyone
+          5. Copy the Web App URL and paste it into js/form.js, inside the
+             quotes of the line:  const SCRIPT_URL = "PASTE..."
+          6. Test once by submitting the form on this page.
+          The Sheet columns must keep the same names as the form fields
+          (they are listed in COLUMN_ORDER inside Code.gs).
+        -->
+        <form id="rsApplyForm" class="rs-form" novalidate>
+
+          <!-- ============ PERSONAL DETAILS ============ -->
+          <h3 class="rs-form-section" data-en="Personal Details" data-hi="व्यक्तिगत जानकारी"></h3>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Full Name" data-hi="पूरा नाम"></label>
+            <input type="text" name="Full Name" required>
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Father's / Husband's Name" data-hi="पिता या पति का नाम"></label>
+            <input type="text" name="Father/Husband Name" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Date of Birth" data-hi="जन्म तिथि"></label>
+            <input type="date" name="Date of Birth" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Age" data-hi="आयु"></label>
+            <input type="number" name="Age" min="18" max="65" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Gender" data-hi="लिंग"></label>
+            <select name="Gender" required>
+              <option value="" data-en="Select" data-hi="चुनें" selected></option>
+              <option value="Male" data-en="Male" data-hi="पुरुष"></option>
+              <option value="Female" data-en="Female" data-hi="महिला"></option>
+              <option value="Other" data-en="Other" data-hi="अन्य"></option>
+            </select>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Height (cm or ft-in)" data-hi="ऊंचाई (सेमी या फुट-इंच में)"></label>
+            <input type="text" name="Height" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Weight (kg)" data-hi="वज़न (किलो में)"></label>
+            <input type="text" name="Weight" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Blood Group" data-hi="ब्लड ग्रुप"></label>
+            <input type="text" name="Blood Group">
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Marital Status" data-hi="वैवाहिक स्थिति"></label>
+            <select name="Marital Status">
+              <option value="" data-en="Select" data-hi="चुनें" selected></option>
+              <option value="Single" data-en="Single" data-hi="अविवाहित"></option>
+              <option value="Married" data-en="Married" data-hi="विवाहित"></option>
+            </select>
+          </div>
+
+          <!-- ============ CONTACT DETAILS ============ -->
+          <h3 class="rs-form-section" data-en="Contact Details" data-hi="संपर्क जानकारी"></h3>
+
+          <div class="rs-field">
+            <label data-en="Mobile Number" data-hi="मोबाइल नंबर"></label>
+            <input type="tel" name="Mobile Number" pattern="[0-9]{10}" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Alternate / WhatsApp Number" data-hi="दूसरा / व्हाट्सऐप नंबर"></label>
+            <input type="tel" name="Alternate Number" pattern="[0-9]{10}">
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Current Address" data-hi="वर्तमान पता"></label>
+            <textarea name="Current Address" required></textarea>
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Permanent Address" data-hi="स्थायी पता"></label>
+            <textarea name="Permanent Address" required></textarea>
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Village / City &amp; District" data-hi="गांव / शहर और जिला"></label>
+            <input type="text" name="City District" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="State" data-hi="राज्य"></label>
+            <input type="text" name="State" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="PIN Code" data-hi="पिन कोड"></label>
+            <input type="text" name="PIN Code" pattern="[0-9]{6}" required>
+          </div>
+
+          <!-- ============ JOB DETAILS ============ -->
+          <h3 class="rs-form-section" data-en="Job Details" data-hi="नौकरी की जानकारी"></h3>
+
+          <div class="rs-field">
+            <label data-en="Post Applying For" data-hi="किस पद के लिए आवेदन कर रहे हैं"></label>
+            <select name="Post" required>
+              <option value="" data-en="Select" data-hi="चुनें" selected></option>
+              <option value="Guard" data-en="Guard" data-hi="गार्ड"></option>
+              <option value="Gunman" data-en="Gunman" data-hi="गनमैन"></option>
+              <option value="Housekeeping" data-en="Housekeeping" data-hi="हाउसकीपिंग"></option>
+              <option value="Supervisor" data-en="Supervisor" data-hi="सुपरवाइज़र"></option>
+            </select>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Total Work Experience (years)" data-hi="कुल कार्य अनुभव (सालों में)"></label>
+            <input type="text" name="Experience">
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Previous Employer(s)" data-hi="पिछले नियोक्ता का नाम"></label>
+            <input type="text" name="Previous Employer">
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Educational Qualification" data-hi="शैक्षणिक योग्यता"></label>
+            <input type="text" name="Education" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Do you have a Gun License? (only for Gunman post)" data-hi="क्या आपके पास बंदूक का लाइसेंस है? (केवल गनमैन पद के लिए)"></label>
+            <select name="Gun License">
+              <option value="" data-en="Select" data-hi="चुनें" selected></option>
+              <option value="Yes" data-en="Yes" data-hi="हाँ"></option>
+              <option value="No" data-en="No" data-hi="नहीं"></option>
+              <option value="NA" data-en="Not Applicable" data-hi="लागू नहीं"></option>
+            </select>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Do you have a PSARA / Security Training Certificate?" data-hi="क्या आपके पास सुरक्षा प्रशिक्षण प्रमाण पत्र है?"></label>
+            <select name="PSARA Certificate">
+              <option value="" data-en="Select" data-hi="चुनें" selected></option>
+              <option value="Yes" data-en="Yes" data-hi="हाँ"></option>
+              <option value="No" data-en="No" data-hi="नहीं"></option>
+            </select>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Preferred Shift" data-hi="पसंदीदा शिफ्ट"></label>
+            <select name="Shift">
+              <option value="" data-en="Select" data-hi="चुनें" selected></option>
+              <option value="Day" data-en="Day" data-hi="दिन"></option>
+              <option value="Night" data-en="Night" data-hi="रात"></option>
+              <option value="Both" data-en="Both" data-hi="दोनों"></option>
+            </select>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Preferred Location" data-hi="पसंदीदा स्थान"></label>
+            <input type="text" name="Preferred Location">
+          </div>
+
+          <!-- ============ IDENTITY DOCUMENTS ============ -->
+          <h3 class="rs-form-section" data-en="Identity Documents" data-hi="पहचान दस्तावेज़"></h3>
+
+          <div class="rs-field">
+            <label data-en="Aadhaar Card Number" data-hi="आधार कार्ड नंबर"></label>
+            <input type="text" name="Aadhaar Number" pattern="[0-9]{12}" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Upload Aadhaar Card (Front &amp; Back)" data-hi="आधार कार्ड अपलोड करें (आगे और पीछे)"></label>
+            <input type="file" name="Aadhaar File" accept="image/*,.pdf" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="PAN Card Number" data-hi="पैन कार्ड नंबर"></label>
+            <input type="text" name="PAN Number" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Upload PAN Card" data-hi="पैन कार्ड अपलोड करें"></label>
+            <input type="file" name="PAN File" accept="image/*,.pdf" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Upload Recent Photo" data-hi="हाल की फोटो अपलोड करें"></label>
+            <input type="file" name="Photo File" accept="image/*" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="Upload Police Verification Certificate (if available)" data-hi="पुलिस सत्यापन प्रमाण पत्र अपलोड करें (यदि उपलब्ध हो)"></label>
+            <input type="file" name="Police Verification File" accept="image/*,.pdf">
+          </div>
+
+          <!-- ============ BANK DETAILS ============ -->
+          <h3 class="rs-form-section" data-en="Bank Details (for Salary)" data-hi="बैंक विवरण (वेतन के लिए)"></h3>
+
+          <div class="rs-field">
+            <label data-en="Bank Account Number" data-hi="बैंक खाता संख्या"></label>
+            <input type="text" name="Bank Account Number" required>
+          </div>
+
+          <div class="rs-field">
+            <label data-en="IFSC Code" data-hi="आईएफएससी कोड"></label>
+            <input type="text" name="IFSC Code" required>
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <label data-en="Bank Name &amp; Branch" data-hi="बैंक का नाम और शाखा"></label>
+            <input type="text" name="Bank Name Branch" required>
+          </div>
+
+          <!-- ============ DECLARATION ============ -->
+          <h3 class="rs-form-section" data-en="Declaration" data-hi="घोषणा"></h3>
+
+          <div class="rs-field rs-field-wide">
+            <label class="rs-checkbox-label">
+              <input type="checkbox" name="Declaration" required>
+              <span data-en="I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application."
+                    data-hi="मैं पुष्टि करता/करती हूं कि उपरोक्त जानकारी सही है, और मैं सहमत हूं कि RS Enterprises इस जानकारी का उपयोग मेरे आवेदन को प्रोसेस करने के लिए कर सकती है।"></span>
+            </label>
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <button type="submit" class="rs-submit-btn" data-en="Submit Application" data-hi="आवेदन जमा करें"></button>
+          </div>
+
+          <div class="rs-field rs-field-wide">
+            <p id="rsFormStatus" class="rs-form-status" role="status" aria-live="polite"></p>
+          </div>
+
+        </form>
 
         <!--
           Collapsible notes for the site owner (you). This box explains how
-          the Google Form is set up so that you can rebuild, edit or check
-          it later. It is only for your information - visitors can ignore it.
+          the application form is wired up so that you can connect it,
+          edit it or check it later. It is only for your information -
+          visitors can ignore it.
         -->
         <details class="owner-notes">
-          <summary data-en="For the site owner: how the Google Form was set up" data-hi="साइट मालिक के लिए: Google फ़ॉर्म कैसे सेट किया गया">For the site owner: how the Google Form was set up</summary>
+          <summary data-en="For the site owner: how the application form is set up" data-hi="साइट मालिक के लिए: आवेदन फ़ॉर्म कैसे सेट किया गया">For the site owner: how the application form is set up</summary>
 
-          <h5 data-en="The exact steps to create the form" data-hi="फ़ॉर्म बनाने के सटीक चरण">The exact steps to create the form</h5>
+          <h5 data-en="The exact steps to connect the form to your Google Sheet" data-hi="फ़ॉर्म को अपनी Google Sheet से जोड़ने के सटीक चरण">The exact steps to connect the form to your Google Sheet</h5>
           <ol>
-            <li data-en='Go to forms.google.com and create a new form, titled "RS Enterprises - Job Application Form".' data-hi='forms.google.com पर जाएं और "RS Enterprises - Job Application Form" नाम से नया फ़ॉर्म बनाएं।'>Go to forms.google.com and create a new form, titled "RS Enterprises - Job Application Form".</li>
-            <li data-en='In the form Settings, turn on "Collect email addresses" (optional). In the Responses tab, click the green Sheets icon once, so a linked Google Sheet is created. Every submission will be saved there automatically and permanently - nothing is lost even if this website ever has a problem.' data-hi="फ़ॉर्म की Settings में 'Collect email addresses' (वैकल्पिक) चालू करें। Responses टैब में हरे Sheets आइकन पर एक बार क्लिक करें, ताकि एक Google Sheet बन जाए। हर आवेदन अपने आप और हमेशा के लिए वहां सेव हो जाएगा - भले ही इस वेबसाइट में कभी कोई दिक्कत आ जाए, कुछ नहीं खोएगा।">In the form Settings, turn on "Collect email addresses" (optional). In the Responses tab, click the green Sheets icon once, so a linked Google Sheet is created. Every submission will be saved there automatically and permanently - nothing is lost even if this website ever has a problem.</li>
-            <li data-en="Add every field listed in the 'Application form fields' box below as a question, in both English and Hindi. Use Section breaks so the form stays short, neat and easy to read." data-hi="नीचे दिए 'आवेदन फ़ॉर्म के सवाल' बॉक्स का हर सवाल फ़ॉर्म में जोड़ें, अंग्रेज़ी और हिंदी दोनों में। फ़ॉर्म छोटा, साफ और आसान रखने के लिए Section breaks का उपयोग करें।">Add every field listed in the 'Application form fields' box below as a question, in both English and Hindi. Use Section breaks so the form stays short, neat and easy to read.</li>
-            <li data-en='Get the embed code: click "Send" (top right), then the "</>" Embed icon, and copy the iframe code.' data-hi='एम्बेड कोड लें: "Send" (ऊपर दाईं ओर) पर क्लिक करें, फिर "</>" Embed आइकन पर क्लिक करें और iframe कोड कॉपी करें।'>Get the embed code: click "Send" (top right), then the "</>" Embed icon, and copy the iframe code.</li>
-            <li data-en="Paste the iframe code into index.html, in the dashed form box where the owner note says: PASTE GOOGLE FORM EMBED IFRAME CODE HERE" data-hi="iframe कोड को index.html में, उस बॉक्स में पेस्ट करें जहां यह लिखा है: PASTE GOOGLE FORM EMBED IFRAME CODE HERE">Paste the iframe code into index.html, in the dashed form box where the owner note says: PASTE GOOGLE FORM EMBED IFRAME CODE HERE</li>
-            <li data-en="Replace [PASTE GOOGLE FORM LINK HERE] on this page with the form's direct link (Google Forms -> Send -> Link)." data-hi="इस पेज पर लिखे [PASTE GOOGLE FORM LINK HERE] की जगह फ़ॉर्म का सीधा लिंक लगाएं (Google Forms -> Send -> Link)।">Replace [PASTE GOOGLE FORM LINK HERE] on this page with the form's direct link (Google Forms -> Send -> Link).</li>
+            <li data-en='Open the file Code.gs (the Google Apps Script that came with this form) in the Apps Script editor at script.google.com.' data-hi='स्क्रिप्ट एडिटर script.google.com में Code.gs (यह Google Apps Script फ़ाइल इस फ़ॉर्म के साथ आती है) खोलें।'>Open the file Code.gs (the Google Apps Script that came with this form) in the Apps Script editor at script.google.com.</li>
+            <li data-en="At the top of Code.gs, paste the ID of your private Google Sheet into SHEET_ID, and the ID of a private Drive folder into FOLDER_ID (the folder is where applicant files like photos and Aadhaar scans are stored)." data-hi="Code.gs की शुरुआत में, अपनी निजी Google Sheet का ID SHEET_ID में पेस्ट करें, और एक निजी Drive फ़ोल्डर का ID FOLDER_ID में पेस्ट करें (उस फ़ोल्डर में फोटो और आधार स्कैन जैसी फ़ाइलें सुरक्षित रहती हैं)।">At the top of Code.gs, paste the ID of your private Google Sheet into SHEET_ID, and the ID of a private Drive folder into FOLDER_ID (the folder is where applicant files like photos and Aadhaar scans are stored).</li>
+            <li data-en='Click Deploy -> New deployment -> Type: Web app. In the settings choose: Execute as: Me, and Who has access: Anyone.' data-hi='Deploy -> New deployment -> Type: Web app पर क्लिक करें। सेटिंग में चुनें: Execute as: Me, और Who has access: Anyone।'>Click Deploy -> New deployment -> Type: Web app. In the settings choose: Execute as: Me, and Who has access: Anyone.</li>
+            <li data-en='Copy the Web App URL and paste it into js/form.js, inside the quotes of this line: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"' data-hi='Web App URL कॉपी करें और js/form.js में इस लाइन के कोट्स के अंदर पेस्ट करें: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"'>Copy the Web App URL and paste it into js/form.js, inside the quotes of this line: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"</li>
+            <li data-en="Important: never rename a form field in index.html unless you also update the matching column name in Code.gs. Every application is saved using the exact field names, in the same order as the list below." data-hi="जरूरी: index.html में किसी फ़ार्म फ़ील्ड का नाम तभी बदलें जब Code.gs में मेल खाता कॉलम नाम भी बदलें। हर आवेदन सटीक फ़ील्ड नामों से उसी क्रम में सेव होता है जैसा नीचे दी गई सूची में है।">Important: never rename a form field in index.html unless you also update the matching column name in Code.gs. Every application is saved using the exact field names, in the same order as the list below.</li>
+            <li data-en="After setup, test once: fill the form and press Submit Application. A green 'Thank you' message means the Sheet received it." data-hi="सेटअप के बाद एक बार परीक्षण करें: फ़ॉर्म भरें और Submit Application दबाएं। हरा 'धन्यवाद' संदेश मतलब Sheet को आवेदन मिल गया।">After setup, test once: fill the form and press Submit Application. A green 'Thank you' message means the Sheet received it.</li>
           </ol>
 
-          <h5 data-en="Application form fields (add each one as a Question, English and Hindi)" data-hi="आवेदन फ़ॉर्म के सवाल (हर प्रश्न अंग्रेज़ी और हिंदी में जोड़ें)">Application form fields (add each one as a Question, English and Hindi)</h5>
+          <h5 data-en="Application form fields (each one is saved as a Sheet column, in this order)" data-hi="आवेदन फ़ॉर्म के सवाल (हर एक Sheet का कॉलम बनता है, इसी क्रम में)">Application form fields (each one is saved as a Sheet column, in this order)</h5>
 
           <h6 data-en="Section: Personal Details" data-hi="भाग: व्यक्तिगत जानकारी">Section: Personal Details</h6>
           <ul>
@@ -510,7 +746,7 @@
 
           <!-- Privacy reminder about Aadhaar / PAN data -->
           <h5 data-en="A note about privacy" data-hi="गोपनीयता के बारे में एक बात">A note about privacy</h5>
-          <p data-en="Aadhaar and PAN numbers are sensitive personal data. Only the form owner's linked Google Sheet (private to the Google account that owns the form) can see this data - keep that Google account secure and never share the Sheet with anyone." data-hi="आधार और पैन नंबर संवेदनशील निजी जानकारी हैं। केवल फ़ॉर्म के मालिक की जुड़ी हुई Google Sheet (जो फ़ॉर्म के मालिक के अकाउंट में ही निजी रहती है) ही यह जानकारी देख सकती है - उस Google अकाउंट को सुरक्षित रखें और Sheet कभी किसी के साथ साझा न करें।">Aadhaar and PAN numbers are sensitive personal data. Only the form owner's linked Google Sheet (private to the Google account that owns the form) can see this data - keep that Google account secure and never share the Sheet with anyone.</p>
+          <p data-en="Aadhaar and PAN numbers are sensitive personal data. They are sent straight into YOUR private Google Sheet, and uploaded files land in YOUR private Drive folder - the owner's Google account is the only one that can see them. Keep that Google account secure and never share the Sheet or folder with anyone." data-hi="आधार और पैन नंबर संवेदनशील निजी जानकारी हैं। ये सीधे आपकी निजी Google Sheet में जाते हैं, और अपलोड की हुई फ़ाइलें आपके निजी Drive फ़ोल्डर में सुरक्षित रहती हैं - मालिक के Google अकाउंट के अलावा कोई और इन्हें नहीं देख सकता। उस Google अकाउंट को सुरक्षित रखें और Sheet या फ़ोल्डर कभी किसी के साथ साझा न करें।">Aadhaar and PAN numbers are sensitive personal data. They are sent straight into YOUR private Google Sheet, and uploaded files land in YOUR private Drive folder - the owner's Google account is the only one that can see them. Keep that Google account secure and never share the Sheet or folder with anyone.</p>
         </details>
 
       </div>
@@ -650,5 +886,8 @@
 
   <!-- Our own small script: language switch, smooth scroll setup, phone menu, year -->
   <script src="js/main.js"></script>
+
+  <!-- Application form behaviour: validation, bilingual messages, sending -->
+  <script src="js/form.js"></script>
 </body>
 </html>
