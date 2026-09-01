@@ -854,3 +854,142 @@ section[id] {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- 11. Staffing request: CTA band + modal ---------- */
+
+/* The navy "hire manpower" band shown right after the services cards */
+.staffing-cta {
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-2) 100%);
+  border: 1px solid rgba(233, 163, 25, 0.35);
+  border-radius: var(--radius);
+  padding: 3.2rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.staffing-cta .section-head {
+  margin: 0 auto 1.8rem;
+}
+.staffing-cta .section-head h2 {
+  color: var(--white);
+}
+.staffing-cta .section-head p {
+  color: #C9D6E8;
+}
+.staffing-cta-actions {
+  margin-top: 1rem;
+}
+.staffing-cta-actions .btn {
+  max-width: 360px;
+}
+
+/* ---------- 11b. Modal overlay + dialog ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+}
+.modal.open {
+  display: flex;
+}
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 21, 39, 0.66);
+}
+.modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 940px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2.2rem 2.2rem 1.6rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  color: var(--navy);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.modal-close:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+.modal-close svg {
+  width: 22px;
+  height: 22px;
+}
+.modal-title {
+  color: var(--navy);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 0 0 1.6rem;
+  padding-right: 3rem;
+}
+body.modal-open {
+  overflow: hidden;
+}
+
+/* The form sits inside the dialog, so it drops its outer card styling */
+.modal-dialog .rs-form {
+  margin: 0 auto;
+  max-width: 860px;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* Group label above the "Service Required" checkboxes */
+.rs-checkbox-group-label {
+  display: block;
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.staffing-form .rs-checkbox-label {
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+.staffing-form .rs-checkbox-label + .rs-checkbox-label {
+  margin-top: 0.35rem;
+}
+.staffing-form .rs-field.rs-has-error .rs-checkbox-group-label {
+  color: var(--danger);
+}
+
+@media (max-width: 560px) {
+  .staffing-cta {
+    padding: 2.4rem 1.2rem;
+  }
+  .staffing-cta-actions .btn {
+    width: 100%;
+  }
+  .modal {
+    padding: 0.75rem;
+  }
+  .modal-dialog {
+    padding: 1.5rem 1.1rem 1.2rem;
+    max-height: 94vh;
+  }
+  .modal-title {
+    font-size: 1.3rem;
+  }
+}
