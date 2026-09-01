@@ -45,8 +45,7 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
      Apply Now section.
 
      PLACEHOLDERS YOU MUST FILL IN LATER (search for these words):
-       [X] years  ,  [ADD DETAILS]  ,  [CITY, STATE]
-       +91XXXXXXXXXX  ,  919XXXXXXXXX  ,  [yourdomain].com  ,  [Street / Building]
+       [X] years  ,  [ADD DETAILS]  ,  [CITY, STATE]  ,  [yourdomain].com
       ==================================================================== -->
 
 <body>
@@ -665,89 +664,7 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
 
         </form>
 
-        <!--
-          Collapsible notes for the site owner (you). This box explains how
-          the application form is wired up so that you can connect it,
-          edit it or check it later. It is only for your information -
-          visitors can ignore it.
-        -->
-        <details class="owner-notes">
-          <summary data-en="For the site owner: how the application form is set up" data-hi="साइट मालिक के लिए: आवेदन फ़ॉर्म कैसे सेट किया गया">For the site owner: how the application form is set up</summary>
 
-          <h5 data-en="The exact steps to connect the form to your Google Sheet" data-hi="फ़ॉर्म को अपनी Google Sheet से जोड़ने के सटीक चरण">The exact steps to connect the form to your Google Sheet</h5>
-          <ol>
-            <li data-en='Open the file Code.gs (the Google Apps Script that came with this form) in the Apps Script editor at script.google.com.' data-hi='स्क्रिप्ट एडिटर script.google.com में Code.gs (यह Google Apps Script फ़ाइल इस फ़ॉर्म के साथ आती है) खोलें।'>Open the file Code.gs (the Google Apps Script that came with this form) in the Apps Script editor at script.google.com.</li>
-            <li data-en="At the top of Code.gs, paste the ID of your private Google Sheet into SHEET_ID, and the ID of a private Drive folder into FOLDER_ID (the folder is where applicant files like photos and Aadhaar scans are stored)." data-hi="Code.gs की शुरुआत में, अपनी निजी Google Sheet का ID SHEET_ID में पेस्ट करें, और एक निजी Drive फ़ोल्डर का ID FOLDER_ID में पेस्ट करें (उस फ़ोल्डर में फोटो और आधार स्कैन जैसी फ़ाइलें सुरक्षित रहती हैं)।">At the top of Code.gs, paste the ID of your private Google Sheet into SHEET_ID, and the ID of a private Drive folder into FOLDER_ID (the folder is where applicant files like photos and Aadhaar scans are stored).</li>
-            <li data-en='Click Deploy -> New deployment -> Type: Web app. In the settings choose: Execute as: Me, and Who has access: Anyone.' data-hi='Deploy -> New deployment -> Type: Web app पर क्लिक करें। सेटिंग में चुनें: Execute as: Me, और Who has access: Anyone।'>Click Deploy -> New deployment -> Type: Web app. In the settings choose: Execute as: Me, and Who has access: Anyone.</li>
-            <li data-en='Copy the Web App URL and paste it into js/form.js, inside the quotes of this line: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"' data-hi='Web App URL कॉपी करें और js/form.js में इस लाइन के कोट्स के अंदर पेस्ट करें: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"'>Copy the Web App URL and paste it into js/form.js, inside the quotes of this line: const SCRIPT_URL = "PASTE YOUR WEB APP URL HERE"</li>
-            <li data-en="Important: never rename a form field in index.html unless you also update the matching column name in Code.gs. Every application is saved using the exact field names, in the same order as the list below." data-hi="जरूरी: index.html में किसी फ़ार्म फ़ील्ड का नाम तभी बदलें जब Code.gs में मेल खाता कॉलम नाम भी बदलें। हर आवेदन सटीक फ़ील्ड नामों से उसी क्रम में सेव होता है जैसा नीचे दी गई सूची में है।">Important: never rename a form field in index.html unless you also update the matching column name in Code.gs. Every application is saved using the exact field names, in the same order as the list below.</li>
-            <li data-en="After setup, test once: fill the form and press Submit Application. A green 'Thank you' message means the Sheet received it." data-hi="सेटअप के बाद एक बार परीक्षण करें: फ़ॉर्म भरें और Submit Application दबाएं। हरा 'धन्यवाद' संदेश मतलब Sheet को आवेदन मिल गया।">After setup, test once: fill the form and press Submit Application. A green 'Thank you' message means the Sheet received it.</li>
-          </ol>
-
-          <h5 data-en="Application form fields (each one is saved as a Sheet column, in this order)" data-hi="आवेदन फ़ॉर्म के सवाल (हर एक Sheet का कॉलम बनता है, इसी क्रम में)">Application form fields (each one is saved as a Sheet column, in this order)</h5>
-
-          <h6 data-en="Section: Personal Details" data-hi="भाग: व्यक्तिगत जानकारी">Section: Personal Details</h6>
-          <ul>
-            <li data-en="Full Name / पूरा नाम" data-hi="Full Name / पूरा नाम">Full Name / पूरा नाम</li>
-            <li data-en="Father's / Husband's Name / पिता या पति का नाम" data-hi="Father's / Husband's Name / पिता या पति का नाम">Father's / Husband's Name / पिता या पति का नाम</li>
-            <li data-en="Date of Birth / जन्म तिथि" data-hi="Date of Birth / जन्म तिथि">Date of Birth / जन्म तिथि</li>
-            <li data-en="Age / आयु" data-hi="Age / आयु">Age / आयु</li>
-            <li data-en="Gender (Male / Female / Other) / लिंग (पुरुष / महिला / अन्य)" data-hi="Gender (Male / Female / Other) / लिंग (पुरुष / महिला / अन्य)">Gender (Male / Female / Other) / लिंग (पुरुष / महिला / अन्य)</li>
-            <li data-en="Height (in cm or ft-in) / ऊंचाई (सेमी या फुट-इंच में)" data-hi="Height (in cm or ft-in) / ऊंचाई (सेमी या फुट-इंच में)">Height (in cm or ft-in) / ऊंचाई (सेमी या फुट-इंच में)</li>
-            <li data-en="Weight (kg) / वज़न (किलो में)" data-hi="Weight (kg) / वज़न (किलो में)">Weight (kg) / वज़न (किलो में)</li>
-            <li data-en="Blood Group / ब्लड ग्रुप" data-hi="Blood Group / ब्लड ग्रुप">Blood Group / ब्लड ग्रुप</li>
-            <li data-en="Marital Status / वैवाहिक स्थिति" data-hi="Marital Status / वैवाहिक स्थिति">Marital Status / वैवाहिक स्थिति</li>
-          </ul>
-
-          <h6 data-en="Section: Contact Details" data-hi="भाग: संपर्क जानकारी">Section: Contact Details</h6>
-          <ul>
-            <li data-en="Mobile Number / मोबाइल नंबर" data-hi="Mobile Number / मोबाइल नंबर">Mobile Number / मोबाइल नंबर</li>
-            <li data-en="Alternate / WhatsApp Number / दूसरा / व्हाट्सऐप नंबर" data-hi="Alternate / WhatsApp Number / दूसरा / व्हाट्सऐप नंबर">Alternate / WhatsApp Number / दूसरा / व्हाट्सऐप नंबर</li>
-            <li data-en="Current Address / वर्तमान पता" data-hi="Current Address / वर्तमान पता">Current Address / वर्तमान पता</li>
-            <li data-en="Permanent Address / स्थायी पता" data-hi="Permanent Address / स्थायी पता">Permanent Address / स्थायी पता</li>
-            <li data-en="Village / City &amp; District / गांव / शहर और जिला" data-hi="Village / City &amp; District / गांव / शहर और जिला">Village / City &amp; District / गांव / शहर और जिला</li>
-            <li data-en="State / राज्य" data-hi="State / राज्य">State / राज्य</li>
-            <li data-en="PIN Code / पिन कोड" data-hi="PIN Code / पिन कोड">PIN Code / पिन कोड</li>
-          </ul>
-
-          <h6 data-en="Section: Job Details" data-hi="भाग: नौकरी की जानकारी">Section: Job Details</h6>
-          <ul>
-            <li data-en="Post Applying For (dropdown: Guard / Gunman / Housekeeping / Supervisor) / किस पद के लिए आवेदन कर रहे हैं (विकल्प: गार्ड / गनमैन / हाउसकीपिंग / सुपरवाइज़र)" data-hi="Post Applying For (dropdown: Guard / Gunman / Housekeeping / Supervisor) / किस पद के लिए आवेदन कर रहे हैं (विकल्प: गार्ड / गनमैन / हाउसकीपिंग / सुपरवाइज़र)">Post Applying For (dropdown: Guard / Gunman / Housekeeping / Supervisor) / किस पद के लिए आवेदन कर रहे हैं (विकल्प: गार्ड / गनमैन / हाउसकीपिंग / सुपरवाइज़र)</li>
-            <li data-en="Total Work Experience (in years) / कुल कार्य अनुभव (सालों में)" data-hi="Total Work Experience (in years) / कुल कार्य अनुभव (सालों में)">Total Work Experience (in years) / कुल कार्य अनुभव (सालों में)</li>
-            <li data-en="Previous Employer(s) / पिछले नियोक्ता का नाम" data-hi="Previous Employer(s) / पिछले नियोक्ता का नाम">Previous Employer(s) / पिछले नियोक्ता का नाम</li>
-            <li data-en="Educational Qualification / शैक्षणिक योग्यता" data-hi="Educational Qualification / शैक्षणिक योग्यता">Educational Qualification / शैक्षणिक योग्यता</li>
-            <li data-en="Do you have a Gun License? (only for the Gunman post) / क्या आपके पास बंदूक का लाइसेंस है? (केवल गनमैन पद के लिए)" data-hi="Do you have a Gun License? (only for the Gunman post) / क्या आपके पास बंदूक का लाइसेंस है? (केवल गनमैन पद के लिए)">Do you have a Gun License? (only for the Gunman post) / क्या आपके पास बंदूक का लाइसेंस है? (केवल गनमैन पद के लिए)</li>
-            <li data-en="Do you have a PSARA / Security Training Certificate? / क्या आपके पास सुरक्षा प्रशिक्षण प्रमाण पत्र है?" data-hi="Do you have a PSARA / Security Training Certificate? / क्या आपके पास सुरक्षा प्रशिक्षण प्रमाण पत्र है?">Do you have a PSARA / Security Training Certificate? / क्या आपके पास सुरक्षा प्रशिक्षण प्रमाण पत्र है?</li>
-            <li data-en="Preferred Shift: Day / Night / Both / पसंदीदा शिफ्ट: दिन / रात / दोनों" data-hi="Preferred Shift: Day / Night / Both / पसंदीदा शिफ्ट: दिन / रात / दोनों">Preferred Shift: Day / Night / Both / पसंदीदा शिफ्ट: दिन / रात / दोनों</li>
-            <li data-en="Preferred Location / पसंदीदा स्थान" data-hi="Preferred Location / पसंदीदा स्थान">Preferred Location / पसंदीदा स्थान</li>
-          </ul>
-
-          <h6 data-en="Section: Identity Documents" data-hi="भाग: पहचान दस्तावेज़">Section: Identity Documents</h6>
-          <ul>
-            <li data-en="Aadhaar Card Number / आधार कार्ड नंबर" data-hi="Aadhaar Card Number / आधार कार्ड नंबर">Aadhaar Card Number / आधार कार्ड नंबर</li>
-            <li data-en="Upload Aadhaar Card (Front &amp; Back) - use Google Forms' native 'File upload' question type / आधार कार्ड अपलोड करें - 'फ़ाइल अपलोड' वाले प्रश्न का उपयोग करें" data-hi="Upload Aadhaar Card (Front &amp; Back) - use Google Forms' native 'File upload' question type / आधार कार्ड अपलोड करें - 'फ़ाइल अपलोड' वाले प्रश्न का उपयोग करें">Upload Aadhaar Card (Front &amp; Back) - use Google Forms' native 'File upload' question type / आधार कार्ड अपलोड करें - 'फ़ाइल अपलोड' वाले प्रश्न का उपयोग करें</li>
-            <li data-en="PAN Card Number / पैन कार्ड नंबर" data-hi="PAN Card Number / पैन कार्ड नंबर">PAN Card Number / पैन कार्ड नंबर</li>
-            <li data-en="Upload PAN Card - File upload question type / पैन कार्ड अपलोड करें - फ़ाइल अपलोड प्रश्न" data-hi="Upload PAN Card - File upload question type / पैन कार्ड अपलोड करें - फ़ाइल अपलोड प्रश्न">Upload PAN Card - File upload question type / पैन कार्ड अपलोड करें - फ़ाइल अपलोड प्रश्न</li>
-            <li data-en="Upload Recent Passport-size Photo - File upload question type / हाल की पासपोर्ट साइज़ फोटो अपलोड करें - फ़ाइल अपलोड प्रश्न" data-hi="Upload Recent Passport-size Photo - File upload question type / हाल की पासपोर्ट साइज़ फोटो अपलोड करें - फ़ाइल अपलोड प्रश्न">Upload Recent Passport-size Photo - File upload question type / हाल की पासपोर्ट साइज़ फोटो अपलोड करें - फ़ाइल अपलोड प्रश्न</li>
-            <li data-en="Upload Police Verification Certificate, if available / पुलिस सत्यापन प्रमाण पत्र अपलोड करें, यदि उपलब्ध हो" data-hi="Upload Police Verification Certificate, if available / पुलिस सत्यापन प्रमाण पत्र अपलोड करें, यदि उपलब्ध हो">Upload Police Verification Certificate, if available / पुलिस सत्यापन प्रमाण पत्र अपलोड करें, यदि उपलब्ध हो</li>
-          </ul>
-
-          <h6 data-en="Section: Bank Details (for Salary)" data-hi="भाग: बैंक विवरण (वेतन के लिए)">Section: Bank Details (for Salary)</h6>
-          <ul>
-            <li data-en="Bank Account Number / बैंक खाता संख्या" data-hi="Bank Account Number / बैंक खाता संख्या">Bank Account Number / बैंक खाता संख्या</li>
-            <li data-en="IFSC Code / आईएफएससी कोड" data-hi="IFSC Code / आईएफएससी कोड">IFSC Code / आईएफएससी कोड</li>
-            <li data-en="Bank Name &amp; Branch / बैंक का नाम और शाखा" data-hi="Bank Name &amp; Branch / बैंक का नाम और शाखा">Bank Name &amp; Branch / बैंक का नाम और शाखा</li>
-          </ul>
-
-          <h6 data-en="Section: Declaration" data-hi="भाग: घोषणा">Section: Declaration</h6>
-          <ul>
-            <li data-en="A single required checkbox: 'I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application.' / 'मैं पुष्टि करता/करती हूं कि उपरोक्त जानकारी सही है, और मैं सहमत हूं कि RS Enterprises इस जानकारी का उपयोग मेरे आवेदन को प्रोसेस करने के लिए कर सकती है।'" data-hi="A single required checkbox: 'I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application.' / 'मैं पुष्टि करता/करती हूं कि उपरोक्त जानकारी सही है, और मैं सहमत हूं कि RS Enterprises इस जानकारी का उपयोग मेरे आवेदन को प्रोसेस करने के लिए कर सकती है।'">A single required checkbox: 'I confirm that the above information is true and correct, and I agree that RS Enterprises can use this information to process my job application.' / 'मैं पुष्टि करता/करती हूं कि उपरोक्त जानकारी सही है, और मैं सहमत हूं कि RS Enterprises इस जानकारी का उपयोग मेरे आवेदन को प्रोसेस करने के लिए कर सकती है।'</li>
-          </ul>
-
-          <!-- Privacy reminder about Aadhaar / PAN data -->
-          <h5 data-en="A note about privacy" data-hi="गोपनीयता के बारे में एक बात">A note about privacy</h5>
-          <p data-en="Aadhaar and PAN numbers are sensitive personal data. They are sent straight into YOUR private Google Sheet, and uploaded files land in YOUR private Drive folder - the owner's Google account is the only one that can see them. Keep that Google account secure and never share the Sheet or folder with anyone." data-hi="आधार और पैन नंबर संवेदनशील निजी जानकारी हैं। ये सीधे आपकी निजी Google Sheet में जाते हैं, और अपलोड की हुई फ़ाइलें आपके निजी Drive फ़ोल्डर में सुरक्षित रहती हैं - मालिक के Google अकाउंट के अलावा कोई और इन्हें नहीं देख सकता। उस Google अकाउंट को सुरक्षित रखें और Sheet या फ़ोल्डर कभी किसी के साथ साझा न करें।">Aadhaar and PAN numbers are sensitive personal data. They are sent straight into YOUR private Google Sheet, and uploaded files land in YOUR private Drive folder - the owner's Google account is the only one that can see them. Keep that Google account secure and never share the Sheet or folder with anyone.</p>
-        </details>
 
       </div>
     </section>
@@ -772,7 +689,7 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               <div>
                 <strong data-en="Office Address" data-hi="दफ्तर का पता">Office Address</strong>
-                <p data-en="[Street / Building], New Delhi, India - [PIN Code]" data-hi="[गली / भवन], नई दिल्ली, भारत - [पिन कोड]">[Street / Building], New Delhi, India - [PIN Code]</p>
+                <p data-en="Oberia Road, Hatia, Ranchi" data-hi="ओबेरिया रोड, हटिया, रांची">Oberia Road, Hatia, Ranchi</p>
               </div>
             </div>
 
@@ -781,7 +698,7 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
               <div>
                 <strong data-en="Phone" data-hi="फ़ोन">Phone</strong>
-                <p><a href="tel:+91XXXXXXXXXX">+91 9XXXX XXXXX</a></p>
+                <p><a href="tel:+917061751445">+91 7061751445</a> &nbsp;|&nbsp; <a href="tel:+919525635516">+91 9525635516</a></p>
               </div>
             </div>
 
@@ -790,7 +707,7 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.1-1.4A10 10 0 1 0 12 2Zm4.9 14.1c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.5-.1l-.2-.1c-1.3-.5-2.6-1.3-3.7-2.5-1-1.2-1.7-2.4-1.9-2.6-.2-.2-.5-.7-.5-1.4 0-.6.3-1.1.5-1.3.2-.2.5-.3.7-.3h.5c.2 0 .5 0 .7.5l.9 2.1c0 .2.1.3 0 .5l-.3.5c-.1.2-.3.4-.1.6.6.9 1.4 1.7 2.3 2.3.3.2.5.2.7 0l.6-.6c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.5-.1 1Z"/></svg>
               <div>
                 <strong data-en="WhatsApp" data-hi="व्हाट्सऐप">WhatsApp</strong>
-                <p><a href="https://wa.me/919XXXXXXXXX" target="_blank" rel="noopener">+91 9XXXX XXXXX</a></p>
+                <p><a href="https://wa.me/917061751445" target="_blank" rel="noopener">+91 7061751445</a></p>
               </div>
             </div>
 
@@ -812,27 +729,6 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
               </div>
             </div>
 
-            <!-- Social links (placeholders - add the real page links) -->
-            <div class="social-row">
-              <!-- [ADD SOCIAL LINKS] - replace href="#" with the real page addresses -->
-              <a class="btn-social" href="#" data-en="Facebook" data-hi="फेसबुक" target="_blank" rel="noopener">Facebook</a>
-              <a class="btn-social" href="#" data-en="Instagram" data-hi="इंस्टाग्राम" target="_blank" rel="noopener">Instagram</a>
-              <a class="btn-social" href="#" data-en="YouTube" data-hi="यूट्यूब" target="_blank" rel="noopener">YouTube</a>
-            </div>
-
-          </div>
-
-          <!-- Right side: Google Maps (paste your map embed code to replace the placeholder) -->
-          <div class="map-box">
-            <!--
-              GOOGLE MAPS EMBED (how to put a map here):
-              1. Open google.com/maps and search your office address.
-              2. Click "Share" below the address.
-              3. Open the "Embed a map" tab and copy the <iframe> code.
-              4. Delete the <p class="map-placeholder"> line below and
-                 paste the map's <iframe> in its place (inside this box).
-            -->
-            <p class="map-placeholder" data-en="Map will appear here." data-hi="नक्शा यहां दिखाई देगा।">Map will appear here.</p>
           </div>
 
         </div>
@@ -865,10 +761,10 @@ TO CHANGE ANY PIECE OF TEXT on the page, just find the English words
       <!-- Contact summary -->
       <div class="footer-col">
         <h4 data-en="Get in Touch" data-hi="संपर्क में रहें">Get in Touch</h4>
-        <a href="tel:+91XXXXXXXXXX">+91 9XXXX XXXXX</a>
-        <a href="https://wa.me/919XXXXXXXXX" target="_blank" rel="noopener" data-en="WhatsApp Us" data-hi="व्हाट्सऐप करें">WhatsApp Us</a>
+        <a href="tel:+917061751445">+91 7061751445</a>
+        <a href="tel:+919525635516">+91 9525635516</a>
         <a href="mailto:info@rsenterprises.in">info@rsenterprises.in</a>
-        <a href="#contact" data-en="Office Address" data-hi="दफ्तर का पता">Office Address</a>
+        <a href="#contact" data-en="Office Address" data-hi="दफ्तर का पता">Oberia Road, Hatia, Ranchi</a>
       </div>
 
     </div>
